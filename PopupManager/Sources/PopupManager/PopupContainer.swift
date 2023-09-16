@@ -1,0 +1,31 @@
+//
+//  PopupContainer.swift
+//  WTSynth1
+//
+//  Created by Richard Cron on 9/5/23.
+//
+
+import SwiftUI
+
+#if os(iOS)
+internal class PopupContainer: Identifiable, Equatable, ObservableObject {
+    let id = UUID()
+    let popup: AnyView
+    var widthMultiplier: CGFloat
+    var heightMultiplier: CGFloat
+    var touchOutsideDismisses: Bool
+    var source: CGPoint?
+    
+    init(popup: AnyView, widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, source: CGPoint? = nil) {
+        self.popup = popup
+        self.widthMultiplier = widthMultiplier.clamped(to: 0.1...1.0)
+        self.heightMultiplier = heightMultiplier.clamped(to: 0.1...1.0)
+        self.touchOutsideDismisses = touchOutsideDismisses
+        self.source = source
+    }
+    
+    static func ==(lhs: PopupContainer, rhs: PopupContainer) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+#endif
