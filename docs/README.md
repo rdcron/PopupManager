@@ -40,7 +40,7 @@ PopupLink(widthMultiplier: 0.25, "Popup") {
 .frame(width: 150, height: 60)
 ```
 
-In this example, the `widthMultiplier` parameter has been set (the `heightMultiplier` will remain at the default) and a `String` "Popup" has been specified. This will result in the tapple text "Popup" appearing on the screen which will present a red rectangle. The modifiers at the end of the example set the "Popup" text and do not affect the popup view.
+In this example, the `widthMultiplier` parameter has been set (the `heightMultiplier` will remain at the default) and a `String` "Popup" has been specified. This will result in the tappable text "Popup" appearing on the screen which will present a red rectangle. The modifiers at the end of the example set the "Popup" text and do not affect the popup view.
 
 Another method for using PopupLink is with the .popupLink view modifier. Using this method, the lable view is defined in place, and the .popupLink modifier is applied to it including parameters and the popup view itself.
 
