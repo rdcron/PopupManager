@@ -34,6 +34,7 @@ public extension EnvironmentValues {
 public struct PopupManager<Content: View>: View {
     @StateObject private var stack = PopupStack()
     
+    
     public var content: () -> Content
     
     /// Initializes a PopupManager view.
@@ -49,10 +50,16 @@ public struct PopupManager<Content: View>: View {
                         .environmentObject(stack)
                         .onAppear {
                             stack.pmMidpoint = CGPoint(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
+                            print(stack.pmMidpoint)
                         }
                         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-                            stack.pmMidpoint = CGPoint(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
+                            // Without the delay pmMidpoint is updated to the old value
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                stack.pmMidpoint = CGPoint(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
+                                print(stack.pmMidpoint)
+                            }
                         }
+                        .frame(width: geo.size.width, height: geo.size.height)
                 
                 if !stack.items.isEmpty {
                     Color(white: 0, opacity: 0.5)
@@ -90,7 +97,6 @@ public struct PopupManager<Content: View>: View {
                 .transition(.scale(scale: 0.1).combined(with: .offset(CGSize(width: stack.topSource?.x ?? 0, height: stack.topSource?.y ?? 0))))
                 .zIndex(1)
             }
-            .frame(width: geo.size.width, height: geo.size.height)
             .coordinateSpace(name: stack.coordinateNamespace)
         }
     }

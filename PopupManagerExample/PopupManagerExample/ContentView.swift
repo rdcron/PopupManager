@@ -15,19 +15,22 @@ struct ContentView: View {
 func test() -> String {
     return "Hi"
 }
+```
 """
     
     var body: some View {
-        PopupManager {
-            VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundColor(.accentColor)
-                    .popupLink {
+        GeometryReader { geo in
+            PopupManager {
+                VStack {
+                    PopupLink("Test") {
                         Markdown(mdText)
+                            .markdownTheme(.gitHub)
                     }
+                    Spacer()
+                }
+                .padding()
             }
-            .padding()
+            .frame(width: geo.size.width, height: geo.size.height)
         }
     }
 }
