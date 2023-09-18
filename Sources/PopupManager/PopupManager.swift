@@ -90,6 +90,7 @@ public struct PopupManager<Content: View>: View {
                 .transition(.scale(scale: 0.1).combined(with: .offset(CGSize(width: stack.topSource?.x ?? 0, height: stack.topSource?.y ?? 0))))
                 .zIndex(1)
             }
+            .frame(width: geo.size.width, height: geo.size.height)
             .coordinateSpace(name: stack.coordinateNamespace)
         }
     }

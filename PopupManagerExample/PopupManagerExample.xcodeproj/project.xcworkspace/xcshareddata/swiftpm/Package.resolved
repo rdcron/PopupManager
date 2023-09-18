@@ -1,0 +1,32 @@
+{
+  "pins" : [
+    {
+      "identity" : "networkimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gonzalezreal/NetworkImage",
+      "state" : {
+        "revision" : "7aff8d1b31148d32c5933d75557d42f6323ee3d1",
+        "version" : "6.0.0"
+      }
+    },
+    {
+      "identity" : "popupmanager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rdcron/PopupManager.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "be7e2d94703a2a7b7f20e16ed94f6c1ba28dc1db"
+      }
+    },
+    {
+      "identity" : "swift-markdown-ui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gonzalezreal/swift-markdown-ui.git",
+      "state" : {
+        "revision" : "5df8a4adedd6ae4eb2455ef60ff75183984daeb8",
+        "version" : "2.2.0"
+      }
+    }
+  ],
+  "version" : 2
+}
