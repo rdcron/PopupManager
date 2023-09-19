@@ -37,8 +37,10 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
     public var body: some View {
         label()
             .onTapGesture(count: 1, coordinateSpace: .named(stack.coordinateNamespace)) { location in
-                let xOffset = location.x - stack.pmMidpoint.x
-                let yOffset = location.y - stack.pmMidpoint.y
+//                let xOffset = location.x - stack.pmMidpoint.x
+//                let yOffset = location.y - stack.pmMidpoint.y
+                let xOffset = location.x
+                let yOffset = location.y
                 stack.push(.init(popup: AnyView(popup()), widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses: touchOutsideDismisses, source: CGPoint(x: xOffset, y: yOffset)))
             }
     }

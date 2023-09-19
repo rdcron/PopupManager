@@ -48,17 +48,17 @@ public struct PopupManager<Content: View>: View {
             ZStack {
                     content()
                         .environmentObject(stack)
-                        .onAppear {
-                            stack.pmMidpoint = CGPoint(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
-                            print(stack.pmMidpoint)
-                        }
-                        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-                            // Without the delay pmMidpoint is updated to the old value
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.34) {
-                                stack.pmMidpoint = CGPoint(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
-                                print(stack.pmMidpoint)
-                            }
-                        }
+//                        .onAppear {
+//                            stack.pmMidpoint = CGPoint(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
+//                            print(stack.pmMidpoint)
+//                        }
+//                        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
+//                            // Without the delay pmMidpoint is updated to the old value
+//                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.34) {
+//                                stack.pmMidpoint = CGPoint(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
+//                                print(stack.pmMidpoint)
+//                            }
+//                        }
                         .frame(width: geo.size.width, height: geo.size.height)
                 
                 if !stack.items.isEmpty {
@@ -94,7 +94,14 @@ public struct PopupManager<Content: View>: View {
                     .frame(width: geo.size.width * popup.widthMultiplier, height: geo.size.height * popup.heightMultiplier)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                 }
-                .transition(.scale(scale: 0.1).combined(with: .offset(CGSize(width: stack.topSource?.x ?? 0, height: stack.topSource?.y ?? 0))))
+//                .transition(.scale(scale: 0.1).combined(with: .offset(CGSize(width: stack.topSource?.x ?? 0, height: stack.topSource?.y ?? 0))))
+                .transition(
+                    .scale(scale: 0.1)
+                    .combined(with: .offset(
+                        CGSize(
+                            width: (stack.topSource?.x ?? 0) - (geo.size.width / 2),
+                            height: (stack.topSource?.y ?? 0) - (geo.size.height / 2))))
+                )
                 .zIndex(1)
             }
             .coordinateSpace(name: stack.coordinateNamespace)
