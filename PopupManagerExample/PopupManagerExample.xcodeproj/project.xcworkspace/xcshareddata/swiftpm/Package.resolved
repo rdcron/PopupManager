@@ -10,15 +10,6 @@
       }
     },
     {
-      "identity" : "popupmanager",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/rdcron/PopupManager.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "f7d760384de31c9d80290b6f7e87fe90ca8eb927"
-      }
-    },
-    {
       "identity" : "swift-markdown-ui",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/gonzalezreal/swift-markdown-ui.git",

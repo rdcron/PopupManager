@@ -54,7 +54,7 @@ public struct PopupManager<Content: View>: View {
                         }
                         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
                             // Without the delay pmMidpoint is updated to the old value
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.34) {
                                 stack.pmMidpoint = CGPoint(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
                                 print(stack.pmMidpoint)
                             }

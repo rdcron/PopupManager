@@ -9,28 +9,28 @@ import PopupManager
 import MarkdownUI
 import SwiftUI
 
+
 struct ContentView: View {
-    let mdText = """
-```Swift
-func test() -> String {
-    return "Hi"
-}
-```
-"""
     
     var body: some View {
         GeometryReader { geo in
-            PopupManager {
-                VStack {
-                    PopupLink("Test") {
-                        Markdown(mdText)
-                            .markdownTheme(.gitHub)
-                    }
-                    Spacer()
+            NavigationStack {
+                PopupManager {
+                        ZStack {
+                            Color("AppBackground")
+                                .ignoresSafeArea()
+                            VStack {
+                                IntroView()
+                                    .frame(width: geo.size.width * 0.9, height: geo.size.height * 0.4)
+                                
+                                
+                            }
+                        }
+                        .frame(width: geo.size.width, height: geo.size.height)
                 }
-                .padding()
+                .navigationTitle("PopupManager")
             }
-            .frame(width: geo.size.width, height: geo.size.height)
+//            .border(.red)
         }
     }
 }
