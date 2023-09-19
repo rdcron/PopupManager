@@ -98,14 +98,21 @@ public struct PopupManager<Content: View>: View {
                 .transition(
                     .scale(scale: 0.1)
                     .combined(with: .offset(
-                        CGSize(
-                            width: (stack.topSource?.x ?? 0) - (geo.size.width / 2),
-                            height: (stack.topSource?.y ?? 0) - (geo.size.height / 2))))
+                        midOffset(CGPoint(x: geo.size.width / 2, y: geo.size.height / 2))
+                    ))
                 )
                 .zIndex(1)
             }
             .coordinateSpace(name: stack.coordinateNamespace)
         }
+    }
+    
+    func midOffset(_ midPoint: CGPoint) -> CGSize {
+        if let point = stack.topSource {
+            return CGSize(width: point.x - midPoint.x, height: point.y - midPoint.y)
+        }
+        
+        return CGSize(width: 0, height: 0)
     }
 }
 

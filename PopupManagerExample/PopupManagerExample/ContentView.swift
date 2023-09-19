@@ -14,7 +14,7 @@ struct ContentView: View {
     
     var body: some View {
         GeometryReader { geo in
-            NavigationStack {
+            NavigationView {
                 PopupManager {
                         ZStack {
                             Color("AppBackground")
