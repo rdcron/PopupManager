@@ -109,6 +109,7 @@ public struct PopupManager<Content: View>: View {
     
     func midOffset(_ midPoint: CGPoint) -> CGSize {
         if let point = stack.topSource {
+            print(point)
             return CGSize(width: point.x - midPoint.x, height: point.y - midPoint.y)
         }
         

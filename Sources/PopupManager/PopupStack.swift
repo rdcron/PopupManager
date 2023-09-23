@@ -24,9 +24,6 @@ internal class PopupStack: ObservableObject {
     /// CGPoint location where popup animates from when presented, and animates to when dismissed
     @Published private(set) var topSource: CGPoint?
     
-//    /// midpoint of the PopupManager-wrapped view
-//    var pmMidpoint: CGPoint = .zero
-    
     func peek() -> PopupContainer? {
         guard let topElement = items.first else { return nil }
         return topElement

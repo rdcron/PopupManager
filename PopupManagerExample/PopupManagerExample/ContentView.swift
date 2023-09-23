@@ -20,16 +20,34 @@ struct ContentView: View {
                             Color("AppBackground")
                                 .ignoresSafeArea()
                             VStack {
-                                IntroView()
-                                    .frame(width: geo.size.width * 0.9, height: geo.size.height * 0.4)
+                                HStack {
+                                    IntroView()
+                                        .frame(width: geo.size.width * 0.4, height: geo.size.height * 0.4)
+                                        .padding()
+                                    
+                                    BasicsView()
+                                        .frame(width: geo.size.width * 0.4, height: geo.size.height * 0.4)
+                                        .padding()
+                                }
+                                .padding()
                                 
-                                
+                                HStack {
+                                    IntroView()
+                                        .frame(width: geo.size.width * 0.4, height: geo.size.height * 0.4)
+                                        .padding()
+                                    
+                                    BasicsView()
+                                        .frame(width: geo.size.width * 0.4, height: geo.size.height * 0.4)
+                                        .padding()
+                                }
+                                .padding()
                             }
                         }
                         .frame(width: geo.size.width, height: geo.size.height)
                 }
                 .navigationTitle("PopupManager")
             }
+            .navigationViewStyle(.stack)
 //            .border(.red)
         }
     }

@@ -16,7 +16,7 @@ struct LinkFormat: ViewModifier {
     }
 }
 
-extension Text {
+extension View {
     func linkFormat() -> some View {
         modifier(LinkFormat())
     }

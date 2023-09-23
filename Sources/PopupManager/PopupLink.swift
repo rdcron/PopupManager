@@ -25,7 +25,12 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
     var label: () -> LabelView
     var popup: () -> Popup
     
-    public init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, animationSource: AnimationSource = .fromPoint, popup: @escaping () -> Popup, label: @escaping () -> LabelView) {
+    // Animation midpoint values
+    @State private var rect = CGRect.zero
+    @State private var midX = CGFloat.zero
+    @State private var midY = CGFloat.zero
+    
+    public init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, animationSource: AnimationSource = .fromRect, popup: @escaping () -> Popup, label: @escaping () -> LabelView) {
         self.widthMultiplier = widthMultiplier.clamped(to: 0.1...1.0)
         self.heightMultiplier = heightMultiplier.clamped(to: 0.1...1.0)
         self.touchOutsideDismisses = touchOutsideDismisses
@@ -36,13 +41,53 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
     
     public var body: some View {
         label()
+            .background(GeometryReader { geo in
+                Color(.clear)
+                    .preference(key: PMSizePreferenceKey.self, value: geo.frame(in: .named(stack.coordinateNamespace)))
+                    .preference(key: LocalSizePreferenceKey.self, value: geo.frame(in: .local))
+            })
             .onTapGesture(count: 1, coordinateSpace: .named(stack.coordinateNamespace)) { location in
-//                let xOffset = location.x - stack.pmMidpoint.x
-//                let yOffset = location.y - stack.pmMidpoint.y
-                let xOffset = location.x
-                let yOffset = location.y
+                var xOffset = CGFloat.zero
+                var yOffset = CGFloat.zero
+                
+                switch animationSource {
+                case .fromRect:
+                    // Popup animates from the center of the label
+                    xOffset = rect.origin.x + midX
+                    yOffset = rect.origin.y + midY
+                case .fromPoint:
+                    // Popup animates from the touch location within the label
+                    xOffset = location.x
+                    yOffset = location.y
+                }
+                
                 stack.push(.init(popup: AnyView(popup()), widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses: touchOutsideDismisses, source: CGPoint(x: xOffset, y: yOffset)))
             }
+            .onPreferenceChange(PMSizePreferenceKey.self) { newVal in
+                rect = newVal
+            }
+            .onPreferenceChange(LocalSizePreferenceKey.self) { newVal in
+                midX = newVal.midX
+                midY = newVal.midY
+            }
+    }
+}
+
+struct PMSizePreferenceKey: PreferenceKey {
+    typealias Value = CGRect
+    static var defaultValue: Value = .zero
+    
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value = nextValue()
+    }
+}
+
+struct LocalSizePreferenceKey: PreferenceKey {
+    typealias Value = CGRect
+    static var defaultValue: Value = .zero
+    
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value = nextValue()
     }
 }
 

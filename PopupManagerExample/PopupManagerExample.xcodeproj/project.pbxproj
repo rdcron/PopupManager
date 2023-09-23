@@ -13,10 +13,19 @@
 		8D0666F02AB7D5690057F16D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D0666EF2AB7D5690057F16D /* Preview Assets.xcassets */; };
 		8D0666F82AB7D5AB0057F16D /* PopupManager in Frameworks */ = {isa = PBXBuildFile; productRef = 8D0666F72AB7D5AB0057F16D /* PopupManager */; };
 		8D0666FB2AB7D6350057F16D /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8D0666FA2AB7D6350057F16D /* MarkdownUI */; };
+		8D22E7FD2ABA3B1B00CBB541 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22E7FC2ABA3B1B00CBB541 /* CellView.swift */; };
+		8D22E7FF2ABA3C7900CBB541 /* PMPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22E7FE2ABA3C7900CBB541 /* PMPopup.swift */; };
+		8D22E8012ABA3CE200CBB541 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22E8002ABA3CE200CBB541 /* PopupView.swift */; };
+		8D6470D02ABD2276002688C4 /* CodeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6470CF2ABD2276002688C4 /* CodeBlock.swift */; };
+		8D6470D22ABD29BE002688C4 /* PLPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6470D12ABD29BE002688C4 /* PLPopup.swift */; };
+		8D6470D52ABD2B7F002688C4 /* Splash in Frameworks */ = {isa = PBXBuildFile; productRef = 8D6470D42ABD2B7F002688C4 /* Splash */; };
+		8D6470D82ABD3237002688C4 /* TextShortcutPLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6470D72ABD3237002688C4 /* TextShortcutPLView.swift */; };
 		8D83307F2AB938AF00807527 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83307E2AB938AF00807527 /* IntroView.swift */; };
 		8D8330822AB93E2E00807527 /* IntroPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8330812AB93E2E00807527 /* IntroPopup.swift */; };
 		8D8330852AB942C200807527 /* BasicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8330842AB942C200807527 /* BasicsView.swift */; };
 		8D8330882AB947CA00807527 /* LinkFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8330872AB947CA00807527 /* LinkFormat.swift */; };
+		8DD784472ABE91D6000BF3EF /* InfoPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD784462ABE91D6000BF3EF /* InfoPopupView.swift */; };
+		8DD784492ABE98D2000BF3EF /* ViewModifierPLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD784482ABE98D2000BF3EF /* ViewModifierPLView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,11 +34,19 @@
 		8D0666EA2AB7D5690057F16D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8D0666EC2AB7D5690057F16D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D0666EF2AB7D5690057F16D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8D22E7FC2ABA3B1B00CBB541 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		8D22E7FE2ABA3C7900CBB541 /* PMPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PMPopup.swift; sourceTree = "<group>"; };
+		8D22E8002ABA3CE200CBB541 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		8D6470CF2ABD2276002688C4 /* CodeBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeBlock.swift; sourceTree = "<group>"; };
+		8D6470D12ABD29BE002688C4 /* PLPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLPopup.swift; sourceTree = "<group>"; };
+		8D6470D72ABD3237002688C4 /* TextShortcutPLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextShortcutPLView.swift; sourceTree = "<group>"; };
 		8D83307E2AB938AF00807527 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		8D8330812AB93E2E00807527 /* IntroPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroPopup.swift; sourceTree = "<group>"; };
 		8D8330842AB942C200807527 /* BasicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicsView.swift; sourceTree = "<group>"; };
 		8D8330872AB947CA00807527 /* LinkFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkFormat.swift; sourceTree = "<group>"; };
 		8D83308A2AB9505400807527 /* popupmanager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = popupmanager; path = ..; sourceTree = "<group>"; };
+		8DD784462ABE91D6000BF3EF /* InfoPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopupView.swift; sourceTree = "<group>"; };
+		8DD784482ABE98D2000BF3EF /* ViewModifierPLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifierPLView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +56,7 @@
 			files = (
 				8D0666F82AB7D5AB0057F16D /* PopupManager in Frameworks */,
 				8D0666FB2AB7D6350057F16D /* MarkdownUI in Frameworks */,
+				8D6470D52ABD2B7F002688C4 /* Splash in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +102,16 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		8D6470D62ABD3103002688C4 /* PLPopup */ = {
+			isa = PBXGroup;
+			children = (
+				8D6470D12ABD29BE002688C4 /* PLPopup.swift */,
+				8D6470D72ABD3237002688C4 /* TextShortcutPLView.swift */,
+				8DD784482ABE98D2000BF3EF /* ViewModifierPLView.swift */,
+			);
+			path = PLPopup;
+			sourceTree = "<group>";
+		};
 		8D8330802AB93DF400807527 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,7 +124,9 @@
 		8D8330832AB9429400807527 /* Basics */ = {
 			isa = PBXGroup;
 			children = (
+				8D6470D62ABD3103002688C4 /* PLPopup */,
 				8D8330842AB942C200807527 /* BasicsView.swift */,
+				8D22E7FE2ABA3C7900CBB541 /* PMPopup.swift */,
 			);
 			path = Basics;
 			sourceTree = "<group>";
@@ -105,6 +135,10 @@
 			isa = PBXGroup;
 			children = (
 				8D8330872AB947CA00807527 /* LinkFormat.swift */,
+				8D22E7FC2ABA3B1B00CBB541 /* CellView.swift */,
+				8D22E8002ABA3CE200CBB541 /* PopupView.swift */,
+				8D6470CF2ABD2276002688C4 /* CodeBlock.swift */,
+				8DD784462ABE91D6000BF3EF /* InfoPopupView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -136,6 +170,7 @@
 			packageProductDependencies = (
 				8D0666F72AB7D5AB0057F16D /* PopupManager */,
 				8D0666FA2AB7D6350057F16D /* MarkdownUI */,
+				8D6470D42ABD2B7F002688C4 /* Splash */,
 			);
 			productName = PopupManagerExample;
 			productReference = 8D0666E52AB7D5690057F16D /* PopupManagerExample.app */;
@@ -168,6 +203,7 @@
 			packageReferences = (
 				8D0666F62AB7D5AB0057F16D /* XCRemoteSwiftPackageReference "PopupManager" */,
 				8D0666F92AB7D6350057F16D /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				8D6470D32ABD2B7F002688C4 /* XCRemoteSwiftPackageReference "Splash" */,
 			);
 			productRefGroup = 8D0666E62AB7D5690057F16D /* Products */;
 			projectDirPath = "";
@@ -195,12 +231,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D22E8012ABA3CE200CBB541 /* PopupView.swift in Sources */,
 				8D0666EB2AB7D5690057F16D /* ContentView.swift in Sources */,
+				8D6470D02ABD2276002688C4 /* CodeBlock.swift in Sources */,
+				8D22E7FF2ABA3C7900CBB541 /* PMPopup.swift in Sources */,
 				8D0666E92AB7D5690057F16D /* PopupManagerExampleApp.swift in Sources */,
 				8D8330882AB947CA00807527 /* LinkFormat.swift in Sources */,
 				8D83307F2AB938AF00807527 /* IntroView.swift in Sources */,
+				8D6470D82ABD3237002688C4 /* TextShortcutPLView.swift in Sources */,
+				8DD784492ABE98D2000BF3EF /* ViewModifierPLView.swift in Sources */,
 				8D8330822AB93E2E00807527 /* IntroPopup.swift in Sources */,
 				8D8330852AB942C200807527 /* BasicsView.swift in Sources */,
+				8DD784472ABE91D6000BF3EF /* InfoPopupView.swift in Sources */,
+				8D22E7FD2ABA3B1B00CBB541 /* CellView.swift in Sources */,
+				8D6470D22ABD29BE002688C4 /* PLPopup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +380,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -365,7 +409,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -419,6 +463,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		8D6470D32ABD2B7F002688C4 /* XCRemoteSwiftPackageReference "Splash" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JohnSundell/Splash.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.16.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -431,6 +483,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8D0666F92AB7D6350057F16D /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
 			productName = MarkdownUI;
+		};
+		8D6470D42ABD2B7F002688C4 /* Splash */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D6470D32ABD2B7F002688C4 /* XCRemoteSwiftPackageReference "Splash" */;
+			productName = Splash;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
