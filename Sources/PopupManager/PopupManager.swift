@@ -24,6 +24,21 @@ public extension EnvironmentValues {
     }
 }
 
+// Clear stack environment key
+public typealias ClearPopupStack = (() -> ())
+
+/// Environment key to allow clearing the stack from within a popup view.
+public struct ClearPopupStackKey: EnvironmentKey {
+    public static let defaultValue: ClearPopupStack = {}
+}
+
+public extension EnvironmentValues {
+    var clearPopupStack: ClearPopupStack {
+        get { self[ClearPopupStackKey.self] }
+        set { self[ClearPopupStackKey.self] = newValue }
+    }
+}
+
 
 
 /// A wrapper view that manages and presents popup views.
@@ -76,7 +91,8 @@ public struct PopupManager<Content: View>: View {
                     ZStack {
                         popup.popup
                             .environmentObject(stack)
-                            .environment(\.popupDismiss, {stack.pop()})
+                            .environment(\.popupDismiss, { stack.pop() })
+                            .environment(\.clearPopupStack, { stack.clear() })
                         if stack.items.count > 1 {
                             if let index = stack.items.firstIndex(of: popup) {
                                 if index > 0 {

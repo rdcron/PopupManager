@@ -48,5 +48,11 @@ internal class PopupStack: ObservableObject {
             items.insert(element, at: 0)
         }
     }
+    
+    func clear() {
+        withAnimation(.easeIn(duration: 0.2)) {
+            items.removeAll()
+        }
+    }
 }
 #endif
