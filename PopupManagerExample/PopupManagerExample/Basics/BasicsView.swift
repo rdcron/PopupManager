@@ -13,40 +13,39 @@ struct BasicsView: View {
     
     var body: some View {
         CellView(infoText: infoText) {
-            ZStack {
-                VStack {
-                    HStack {
-                        Text("The Basics")
-                            .font(.largeTitle)
-                            .fontWeight(.semibold)
-                            .foregroundColor(Color("DarkText"))
-                            .padding()
-                        Spacer()
-                    }
-                    HStack {
-                        VStack(alignment: .leading) {
+            VStack {
+                HStack {
+                    Text("The Basics")
+                        .font(.largeTitle)
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color("DarkText"))
+                        .padding()
+                    Spacer()
+                }
+                HStack {
+                    VStack(alignment: .leading) {
 
-                            PopupLink(widthMultiplier: 0.65, heightMultiplier: 0.7) {
-                                PMPopup()
-                            } label: {
-                                Text("PopupManager()")
-                                    .linkFormat()
-                            }
-
-                            PopupLink(widthMultiplier: 0.9, heightMultiplier: 0.9) {
-                                PLPopup()
-                            } label: {
-                                Text("PopupLink()")
-                                    .linkFormat()
-                            }
-                            
+                        PopupLink(widthMultiplier: 0.65, heightMultiplier: 0.7) {
+                            PMPopup()
+                        } label: {
+                            Text("PopupManager()")
+                                .linkFormat()
                         }
-                        .padding(.leading, 40)
+
+                        PopupLink(widthMultiplier: 0.9, heightMultiplier: 0.9) {
+                            PLPopup()
+                        } label: {
+                            Text("PopupLink()")
+                                .linkFormat()
+                        }
                         
-                        Spacer()
                     }
+                    .padding(.leading, 40)
+                    
+                    Spacer()
                 }
             }
+
         }
     }
 }

@@ -22,22 +22,22 @@ struct ContentView: View {
                             VStack {
                                 HStack {
                                     IntroView()
-                                        .frame(width: geo.size.width * 0.4, height: geo.size.height * 0.4)
+                                        .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
                                         .padding()
                                     
                                     BasicsView()
-                                        .frame(width: geo.size.width * 0.4, height: geo.size.height * 0.4)
+                                        .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
                                         .padding()
                                 }
                                 .padding()
                                 
                                 HStack {
-                                    IntroView()
-                                        .frame(width: geo.size.width * 0.4, height: geo.size.height * 0.4)
+                                    DismissView()
+                                        .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
                                         .padding()
                                     
                                     BasicsView()
-                                        .frame(width: geo.size.width * 0.4, height: geo.size.height * 0.4)
+                                        .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
                                         .padding()
                                 }
                                 .padding()
