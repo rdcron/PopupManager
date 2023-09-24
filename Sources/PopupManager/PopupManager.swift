@@ -39,7 +39,20 @@ public extension EnvironmentValues {
     }
 }
 
+/// Environment key for ad hoc popups
+public typealias AdHocPopup = (CGFloat, CGFloat, Bool, @escaping () -> any View) -> ()
 
+
+public struct AdHocPopupKey: EnvironmentKey {
+    public static let defaultValue: AdHocPopup = {_,_,_,_  in}
+}
+
+public extension EnvironmentValues {
+    var adHocPopup: AdHocPopup {
+        get { self[AdHocPopupKey.self] }
+        set { self[AdHocPopupKey.self] = newValue }
+    }
+}
 
 /// A wrapper view that manages and presents popup views.
 /// Popup managers instantiate thier own PoupStack objects
@@ -58,22 +71,17 @@ public struct PopupManager<Content: View>: View {
         self.content = content
     }
     
+    func adHoc(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, popup: @escaping () -> any View) {
+        stack.push(.init(popup: AnyView(popup()), widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses: touchOutsideDismisses, source: nil))
+    }
+    
+    
     public var body: some View {
         GeometryReader { geo in
             ZStack {
                     content()
                         .environmentObject(stack)
-//                        .onAppear {
-//                            stack.pmMidpoint = CGPoint(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
-//                            print(stack.pmMidpoint)
-//                        }
-//                        .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-//                            // Without the delay pmMidpoint is updated to the old value
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.34) {
-//                                stack.pmMidpoint = CGPoint(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
-//                                print(stack.pmMidpoint)
-//                            }
-//                        }
+                        .environment(\.adHocPopup, adHoc)
                         .frame(width: geo.size.width, height: geo.size.height)
                 
                 if !stack.items.isEmpty {
@@ -93,6 +101,7 @@ public struct PopupManager<Content: View>: View {
                             .environmentObject(stack)
                             .environment(\.popupDismiss, { stack.pop() })
                             .environment(\.clearPopupStack, { stack.clear() })
+                            .environment(\.adHocPopup, adHoc)
                         if stack.items.count > 1 {
                             if let index = stack.items.firstIndex(of: popup) {
                                 if index > 0 {

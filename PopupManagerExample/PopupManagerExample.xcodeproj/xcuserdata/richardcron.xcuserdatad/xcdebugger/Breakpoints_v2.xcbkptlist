@@ -3,4 +3,100 @@
    uuid = "EB5F2A7C-AB85-446A-A204-134716B8C200"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1CD4352D-B368-45BD-B6A3-51656D699A16"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PopupManagerExample/Basics/PLPopup/AdHocLinkView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0C041949-00A6-43EC-8B43-7DA8C9583A21"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Sources/PopupManager/PopupManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "adHoc(widthMultiplier:heightMultiplier:touchOutsideDismisses:popup:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0C041949-00A6-43EC-8B43-7DA8C9583A21 - fd7bc1ca9e3e54a0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "default argument 0 of PopupManager.PopupManager.adHoc(widthMultiplier: CoreGraphics.CGFloat, heightMultiplier: CoreGraphics.CGFloat, touchOutsideDismisses: Swift.Bool, popup: () -&gt; SwiftUI.View) -&gt; ()"
+                  moduleName = "PopupManagerExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/richardcron/Desktop/popupmanager/Sources/PopupManager/PopupManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "0C041949-00A6-43EC-8B43-7DA8C9583A21 - f33d4813913705a1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "default argument 1 of PopupManager.PopupManager.adHoc(widthMultiplier: CoreGraphics.CGFloat, heightMultiplier: CoreGraphics.CGFloat, touchOutsideDismisses: Swift.Bool, popup: () -&gt; SwiftUI.View) -&gt; ()"
+                  moduleName = "PopupManagerExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/richardcron/Desktop/popupmanager/Sources/PopupManager/PopupManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "0C041949-00A6-43EC-8B43-7DA8C9583A21 - f1fed0556440b6ae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "default argument 2 of PopupManager.PopupManager.adHoc(widthMultiplier: CoreGraphics.CGFloat, heightMultiplier: CoreGraphics.CGFloat, touchOutsideDismisses: Swift.Bool, popup: () -&gt; SwiftUI.View) -&gt; ()"
+                  moduleName = "PopupManagerExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/richardcron/Desktop/popupmanager/Sources/PopupManager/PopupManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "0C041949-00A6-43EC-8B43-7DA8C9583A21 - c3a2b2fc2ecbd87c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PopupManager.PopupManager.adHoc(widthMultiplier: CoreGraphics.CGFloat, heightMultiplier: CoreGraphics.CGFloat, touchOutsideDismisses: Swift.Bool, popup: () -&gt; SwiftUI.View) -&gt; ()"
+                  moduleName = "PopupManagerExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/richardcron/Desktop/popupmanager/Sources/PopupManager/PopupManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "124">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

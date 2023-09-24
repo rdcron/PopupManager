@@ -15,11 +15,11 @@ struct IntroPopup: View {
                 VStack {
                     Spacer()
                     
-                    Text("A popup will expand to a size realative to it's parent PopupManager. The default size (0.75 of both width and height) can be customized.")
+                    Text("A popup will expand to a size realative to it's parent PopupManager. The default size (0.75 of both width and height) can be customized. Both width and height multiplier parameters are clamped between 0.1 and 1.0.")
                         .frame(maxWidth: textWidth)
                         .padding(.bottom)
                     
-                    Text("By default, tapping outside the popup itself will dismiss it. This behavior can be blocked, and alternate methods of dismissing popups are available.")
+                    Text("By default, tapping outside the popup itself will dismiss it. This behavior can be blocked, and alternate methods of dismissing popups will be covered in later sections.")
                         .frame(maxWidth: textWidth)
                         .padding()
                     
