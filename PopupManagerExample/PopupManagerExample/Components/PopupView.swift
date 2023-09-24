@@ -26,6 +26,7 @@ struct PopupView<Content : View>: View {
             content()
                 .foregroundColor(Color("AppBackground"))
                 .font(.system(size: 28))
+                .minimumScaleFactor(0.75)
                 .padding()
             
             VStack {

@@ -33,7 +33,7 @@ struct DismissView: View {
                 
                 Text("clearPopupStack")
                     .linkFormat()
-                    .popupLink(widthMultiplier: 0.3, heightMultiplier: 0.8) {
+                    .popupLink(widthMultiplier: 0.3, heightMultiplier: 0.9) {
                         ClearStackOne()
                     }
             }

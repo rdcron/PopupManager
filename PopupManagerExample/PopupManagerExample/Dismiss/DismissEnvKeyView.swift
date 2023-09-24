@@ -28,6 +28,7 @@ struct PopupView: View {
             ZStack {
                 VStack {
                     Text("Tapping outside this popup won't dismis it. Instead, the Environment Value popupDismiss is called when the 'X' button in the upper-right corner of this view is tapped. The code for setting this up looks like this:")
+                        .padding()
                     
                     CodeBlock(text: codeBlock)
                     

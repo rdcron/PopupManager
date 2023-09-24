@@ -29,6 +29,7 @@ struct PopupView: View {
             ZStack {
                 VStack {
                     Text("Tapping the 'X' button in the upper-right corner will dismiss all active popups. This code is similar to dismissing just the top popup.")
+                        .padding()
                     
                     CodeBlock(text: codeBlock)
                 }

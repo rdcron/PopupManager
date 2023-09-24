@@ -23,24 +23,24 @@ struct ContentView: View {
                                 HStack {
                                     IntroView()
                                         .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
-                                        .padding()
+//                                        .padding()
                                     
                                     BasicsView()
                                         .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
-                                        .padding()
+//                                        .padding()
                                 }
                                 .padding()
                                 
                                 HStack {
                                     DismissView()
                                         .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
-                                        .padding()
+//                                        .padding()
                                     
                                     BasicsView()
                                         .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
-                                        .padding()
+//                                        .padding()
                                 }
-                                .padding()
+//                                .padding()
                             }
                         }
                         .frame(width: geo.size.width, height: geo.size.height)

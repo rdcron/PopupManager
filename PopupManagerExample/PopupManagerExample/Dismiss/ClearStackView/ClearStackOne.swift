@@ -13,7 +13,7 @@ struct ClearStackOne: View {
         PopupView {
             Text("(Open this one)")
                 .linkFormat()
-                .popupLink(widthMultiplier: 0.7, heightMultiplier: 0.6, touchOutsideDismisses: false) {
+                .popupLink(widthMultiplier: 0.7, heightMultiplier: 0.8, touchOutsideDismisses: false) {
                     ClearStackTwo()
                 }
         }

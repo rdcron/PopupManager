@@ -25,7 +25,7 @@ struct BasicsView: View {
                 HStack {
                     VStack(alignment: .leading) {
 
-                        PopupLink(widthMultiplier: 0.65, heightMultiplier: 0.7) {
+                        PopupLink(heightMultiplier: 0.85) {
                             PMPopup()
                         } label: {
                             Text("PopupManager()")

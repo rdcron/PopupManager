@@ -27,6 +27,7 @@ struct CellView<Content : View>: View {
                 .multilineTextAlignment(.leading)
                 .foregroundColor((Color("DarkText")))
                 .font(.system(size: 28))
+                .minimumScaleFactor(0.5)
                 .padding()
             
             VStack {
