@@ -15,8 +15,9 @@ struct PLPopup: View {
                 Text("'PopupLink()' designates a tappable label view and provides a closure for the popup activated by that label. The primary initializer for 'PopupLink()' is:")
                 CodeBlock(text: "public init(widthMultiplier:heightMultiplier:touchOutsideDismisses:animationSource:popup:label:)")
                 
-                Text("Parameter descriptions")
+                Text("(Parameter descriptions)")
                     .linkFormat()
+                    .italic()
                     .popupLink(widthMultiplier: 0.6, heightMultiplier: 0.6) {
                         ParamDetailsView()
                     }
