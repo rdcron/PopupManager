@@ -10,7 +10,9 @@ import SwiftUI
 struct DataPassingView: View {
     let infoText: LocalizedStringKey = "_Code for these links can be found in:_\n**/DataPassing/DataPassingView.swift**"
     
-    @State private var nextLinkHue = 0.165
+    @State private var borderHue = 0.522
+    @State private var borderSat = 0.72
+    @State private var borderBright = 0.81
     
     var body: some View {
         CellView(infoText: infoText) {
@@ -24,12 +26,12 @@ struct DataPassingView: View {
                     Spacer()
                 }
                 
-                Text("Since popup views are normal view, the same strategies used for passing data in other SwiftUI views can be applied here. For example, the folling link opens a popup with a slider which alters the hue of the 'Next Page' link at the bottom of the page.")
+                Text("Since popup views are normal views, the same strategies used for passing data in other SwiftUI views can be applied here. For example, the folling link opens a popup that adjusts the color this cell's border.")
                 
-                Text("Adjust Hue")
+                Text("Adjust Color")
                     .linkFormat()
-                    .popupLink(widthMultiplier: 0.3, heightMultiplier: 0.3) {
-                        HueAdjustView(hue: $nextLinkHue)
+                    .popupLink(widthMultiplier: 0.3, heightMultiplier: 0.6) {
+                        HueAdjustView(hue: $borderHue, sat: $borderSat, bright: $borderBright)
                     }
                 
                 Spacer()
@@ -38,10 +40,10 @@ struct DataPassingView: View {
                     Page2View()
                 } label: {
                     Text("Next Page")
-                        .underline()
-                        .foregroundColor(Color(hue: nextLinkHue, saturation: 0.5, brightness: 1.0))
+                        .linkFormat()
                 }
             }
         }
+        .overlay(RoundedRectangle(cornerRadius: 21).stroke(Color(hue: borderHue, saturation: borderSat, brightness: borderBright), lineWidth: 10))
     }
 }

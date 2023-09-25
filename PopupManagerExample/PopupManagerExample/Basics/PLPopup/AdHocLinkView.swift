@@ -11,10 +11,16 @@ import PopupManager
 struct AdHocLinkView: View {
     @Environment(\.adHocPopup) var adHoc
     var text = {
-        if let txt = try? AttributedString(markdown:
+        if var txt = try? AttributedString(markdown:
 """
 Ad hoc links can be created by using the [adHocPopup](popup1) Environment Value. This allows a popup to be activated by a function call or system event. One use is to create [in-line links](popup2) using AttributedString and accessing the openURL environment value to intercept the link and open a [popup](popup3).
 """) {
+            var linkRange = txt.range(of: "adHocPopup")
+            txt[linkRange!].underlineStyle = Text.LineStyle.single
+            linkRange = txt.range(of: "in-line links")
+            txt[linkRange!].underlineStyle = Text.LineStyle.single
+            linkRange = txt.range(of: "popup.")
+            txt[linkRange!].underlineStyle = Text.LineStyle.single
             return txt
         } else {
             return ""
@@ -92,6 +98,7 @@ var body: some View {
                         return .discarded
                     }
                 })
+                .tint(Color("LinkYellow"))
         }
     }
 }
