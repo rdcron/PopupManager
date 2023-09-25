@@ -22,6 +22,9 @@ struct PopupView<Content : View>: View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
                 .fill(Color("PopupBackground"))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 21)
+                        .stroke(Color("PopupBorder")))
          
             content()
                 .foregroundColor(Color("AppBackground"))

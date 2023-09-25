@@ -54,6 +54,18 @@ public extension EnvironmentValues {
     }
 }
 
+/// Environment key for most recent touch location
+public struct TouchLocationKey: EnvironmentKey {
+    public static let defaultValue: CGPoint = .zero
+}
+
+public extension EnvironmentValues {
+    var popupTouchLocation: CGPoint {
+        get { self[TouchLocationKey.self] }
+        set { self[TouchLocationKey.self] = newValue }
+    }
+}
+
 /// A wrapper view that manages and presents popup views.
 /// Popup managers instantiate thier own PoupStack objects
 /// to store all active popups as well as some location data.
@@ -102,6 +114,7 @@ public struct PopupManager<Content: View>: View {
                             .environment(\.popupDismiss, { stack.pop() })
                             .environment(\.clearPopupStack, { stack.clear() })
                             .environment(\.adHocPopup, adHoc)
+                            .environment(\.popupTouchLocation, stack.topSource ?? .zero)
                         if stack.items.count > 1 {
                             if let index = stack.items.firstIndex(of: popup) {
                                 if index > 0 {
@@ -119,6 +132,7 @@ public struct PopupManager<Content: View>: View {
                     .frame(width: geo.size.width * popup.widthMultiplier, height: geo.size.height * popup.heightMultiplier)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                 }
+                
 //                .transition(.scale(scale: 0.1).combined(with: .offset(CGSize(width: stack.topSource?.x ?? 0, height: stack.topSource?.y ?? 0))))
                 .transition(
                     .scale(scale: 0.1)

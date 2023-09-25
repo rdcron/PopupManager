@@ -21,6 +21,12 @@
 		8D6470D22ABD29BE002688C4 /* PLPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6470D12ABD29BE002688C4 /* PLPopup.swift */; };
 		8D6470D52ABD2B7F002688C4 /* Splash in Frameworks */ = {isa = PBXBuildFile; productRef = 8D6470D42ABD2B7F002688C4 /* Splash */; };
 		8D6470D82ABD3237002688C4 /* TextShortcutPLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6470D72ABD3237002688C4 /* TextShortcutPLView.swift */; };
+		8D6871892AC0AC13007E8D05 /* DataPassingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6871882AC0AC13007E8D05 /* DataPassingView.swift */; };
+		8D68718B2AC0AEF3007E8D05 /* HueAdjustView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D68718A2AC0AEF3007E8D05 /* HueAdjustView.swift */; };
+		8D68718E2AC0B33C007E8D05 /* Page2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D68718D2AC0B33C007E8D05 /* Page2View.swift */; };
+		8D6871902AC0BD47007E8D05 /* MultiManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D68718F2AC0BD47007E8D05 /* MultiManagerView.swift */; };
+		8D6871922AC0C453007E8D05 /* FromLocationAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6871912AC0C453007E8D05 /* FromLocationAnimationView.swift */; };
+		8D6871942AC0CE65007E8D05 /* LocationPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6871932AC0CE65007E8D05 /* LocationPopupView.swift */; };
 		8D83307F2AB938AF00807527 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D83307E2AB938AF00807527 /* IntroView.swift */; };
 		8D8330822AB93E2E00807527 /* IntroPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8330812AB93E2E00807527 /* IntroPopup.swift */; };
 		8D8330852AB942C200807527 /* BasicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8330842AB942C200807527 /* BasicsView.swift */; };
@@ -47,6 +53,12 @@
 		8D6470CF2ABD2276002688C4 /* CodeBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeBlock.swift; sourceTree = "<group>"; };
 		8D6470D12ABD29BE002688C4 /* PLPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PLPopup.swift; sourceTree = "<group>"; };
 		8D6470D72ABD3237002688C4 /* TextShortcutPLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextShortcutPLView.swift; sourceTree = "<group>"; };
+		8D6871882AC0AC13007E8D05 /* DataPassingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassingView.swift; sourceTree = "<group>"; };
+		8D68718A2AC0AEF3007E8D05 /* HueAdjustView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueAdjustView.swift; sourceTree = "<group>"; };
+		8D68718D2AC0B33C007E8D05 /* Page2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page2View.swift; sourceTree = "<group>"; };
+		8D68718F2AC0BD47007E8D05 /* MultiManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiManagerView.swift; sourceTree = "<group>"; };
+		8D6871912AC0C453007E8D05 /* FromLocationAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromLocationAnimationView.swift; sourceTree = "<group>"; };
+		8D6871932AC0CE65007E8D05 /* LocationPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPopupView.swift; sourceTree = "<group>"; };
 		8D83307E2AB938AF00807527 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		8D8330812AB93E2E00807527 /* IntroPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroPopup.swift; sourceTree = "<group>"; };
 		8D8330842AB942C200807527 /* BasicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicsView.swift; sourceTree = "<group>"; };
@@ -96,6 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				8D8330862AB9479900807527 /* Components */,
+				8D68718C2AC0B2E6007E8D05 /* Page2 */,
+				8D6871872AC0ABD0007E8D05 /* DataPassing */,
 				8DA3CDFA2ABF82E000B55CE2 /* Dismiss */,
 				8D8330832AB9429400807527 /* Basics */,
 				8D8330802AB93DF400807527 /* Intro */,
@@ -125,6 +139,26 @@
 				8D3E39902ABFE4C2002D0EC3 /* AdHocLinkView.swift */,
 			);
 			path = PLPopup;
+			sourceTree = "<group>";
+		};
+		8D6871872AC0ABD0007E8D05 /* DataPassing */ = {
+			isa = PBXGroup;
+			children = (
+				8D6871882AC0AC13007E8D05 /* DataPassingView.swift */,
+				8D68718A2AC0AEF3007E8D05 /* HueAdjustView.swift */,
+			);
+			path = DataPassing;
+			sourceTree = "<group>";
+		};
+		8D68718C2AC0B2E6007E8D05 /* Page2 */ = {
+			isa = PBXGroup;
+			children = (
+				8D68718D2AC0B33C007E8D05 /* Page2View.swift */,
+				8D68718F2AC0BD47007E8D05 /* MultiManagerView.swift */,
+				8D6871912AC0C453007E8D05 /* FromLocationAnimationView.swift */,
+				8D6871932AC0CE65007E8D05 /* LocationPopupView.swift */,
+			);
+			path = Page2;
 			sourceTree = "<group>";
 		};
 		8D8330802AB93DF400807527 /* Intro */ = {
@@ -266,7 +300,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DA3CE072ABFBAE900B55CE2 /* ParamDetailsView.swift in Sources */,
+				8D6871922AC0C453007E8D05 /* FromLocationAnimationView.swift in Sources */,
 				8DA3CE012ABF8BD500B55CE2 /* ClearStackOne.swift in Sources */,
+				8D6871902AC0BD47007E8D05 /* MultiManagerView.swift in Sources */,
+				8D6871942AC0CE65007E8D05 /* LocationPopupView.swift in Sources */,
 				8DA3CE032ABF8C1F00B55CE2 /* ClearStackTwo.swift in Sources */,
 				8D22E8012ABA3CE200CBB541 /* PopupView.swift in Sources */,
 				8D0666EB2AB7D5690057F16D /* ContentView.swift in Sources */,
@@ -280,10 +317,13 @@
 				8D8330822AB93E2E00807527 /* IntroPopup.swift in Sources */,
 				8D8330852AB942C200807527 /* BasicsView.swift in Sources */,
 				8DA3CDFE2ABF85A800B55CE2 /* DismissEnvKeyView.swift in Sources */,
+				8D6871892AC0AC13007E8D05 /* DataPassingView.swift in Sources */,
 				8DA3CDFC2ABF830F00B55CE2 /* DismissView.swift in Sources */,
 				8DD784472ABE91D6000BF3EF /* InfoPopupView.swift in Sources */,
 				8D22E7FD2ABA3B1B00CBB541 /* CellView.swift in Sources */,
 				8D3E39912ABFE4C2002D0EC3 /* AdHocLinkView.swift in Sources */,
+				8D68718B2AC0AEF3007E8D05 /* HueAdjustView.swift in Sources */,
+				8D68718E2AC0B33C007E8D05 /* Page2View.swift in Sources */,
 				8D6470D22ABD29BE002688C4 /* PLPopup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

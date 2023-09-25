@@ -36,7 +36,7 @@ struct ContentView: View {
                                         .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
 //                                        .padding()
                                     
-                                    BasicsView()
+                                    DataPassingView()
                                         .frame(width: geo.size.width * 0.45, height: geo.size.height * 0.4)
 //                                        .padding()
                                 }

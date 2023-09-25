@@ -24,6 +24,7 @@ struct InfoPopupView<Content: View>: View {
             .foregroundColor(Color("DarkText"))
             .font(.system(size: 28))
             .padding()
+            .minimumScaleFactor(0.5)
     }
 }
 

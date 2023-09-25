@@ -50,9 +50,14 @@ internal class PopupStack: ObservableObject {
     }
     
     func clear() {
-        withAnimation(.easeIn(duration: 0.2)) {
-            items.removeAll()
+        for _ in 0..<items.count {
+            pop()
         }
+        
+        
+//        withAnimation(.easeIn(duration: 0.2)) {
+//            items.removeAll()
+//        }
     }
 }
 #endif
