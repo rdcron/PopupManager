@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PopupManager
 
 struct HueAdjustView: View {
     @Binding var hue: Double
@@ -19,12 +20,13 @@ struct HueAdjustView: View {
                 
                 Slider(value: $hue, in: 0.0 ... 1.0) {
                     Text("Hue adjustment slider")
-                } minimumValueLabel: {
-                    Text("0.0")
-                } maximumValueLabel: {
-                    Text("1.0")
                 }
-                .tint(Color("LinkYellow"))
+//            minimumValueLabel: {
+//                    Text("0.0")
+//                } maximumValueLabel: {
+//                    Text("1.0")
+//                }
+//                .tint(Color("LinkYellow"))
                 
                 Text("Saturation")
                 
@@ -49,13 +51,23 @@ struct HueAdjustView: View {
                 .tint(Color("LinkYellow"))
                 
                 Button("Reset") {
-                    hue = 0.522
-                    sat = 0.72
-                    bright = 0.81
+                    print("Reset")
+                    withAnimation {
+                        hue = 0.522
+                        sat = 0.72
+                        bright = 0.81
+                    }
                 }
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 5).fill(Color("PopupButtonBackground")))
 
+                Text("Drag test")
+                    .contentShape(Rectangle())
+                    .gesture(
+                        DragGesture()
+                            .onChanged { value in
+                                print("Location: \(value.location.x)")
+                            })
             }
             .minimumScaleFactor(0.6)
         }

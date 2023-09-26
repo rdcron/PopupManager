@@ -68,7 +68,7 @@ var body: some View {
                 .environment(\.openURL, OpenURLAction { url in
                     switch url.absoluteString {
                     case "popup1":
-                        adHoc(0.85, 0.6, true) {
+                        adHoc(0.85, 0.6, true, .fromPoint) {
                             PopupView {
                                 VStack {
                                     CodeBlock(text: "public typealias AdHocPopup = (CGFloat, CGFloat, Bool, @escaping () -> any View) -> ()")
@@ -80,7 +80,7 @@ var body: some View {
                         }
                         return .handled
                     case "popup2":
-                        adHoc(0.85, 0.95, true) {
+                        adHoc(0.85, 0.95, true, .fromPoint) {
                             PopupView {
                                 CodeBlock(text: openUrlExample)
                                     .minimumScaleFactor(0.5)
@@ -88,7 +88,7 @@ var body: some View {
                         }
                         return .handled
                     case "popup3":
-                        adHoc(0.5, 0.5, true) {
+                        adHoc(0.5, 0.5, true, .fromPoint) {
                             PopupView {
                                 Text("Currently, there is no way to animate from the tap location when using an ad hoc popup. These popups simply animate from the center of the PopupManager.")
                             }

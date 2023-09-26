@@ -30,9 +30,9 @@
             filePath = "../Sources/PopupManager/PopupManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "adHoc(widthMultiplier:heightMultiplier:touchOutsideDismisses:popup:)"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "adHoc(widthMultiplier:heightMultiplier:touchOutsideDismisses:animationSource:popup:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -108,10 +108,90 @@
             filePath = "../Sources/PopupManager/PopupManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "midOffset(_:)"
-            landmarkType = "7">
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D13E2530-DA5D-41C7-AFEF-8D95F183EF53"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Sources/PopupManager/PopupLink.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B4C64396-0699-41CE-9E11-505A1FB99D7A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Sources/PopupManager/PopupLink.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D57A8B44-D7C3-4CAF-B97D-3CE3470D667C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Sources/PopupManager/PopupLink.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "D57A8B44-D7C3-4CAF-B97D-3CE3470D667C - f3c7a1af42a8724c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (__C.CGPoint) -&gt; () in PopupManager.PopupLink.body.getter : some"
+                  moduleName = "PopupManagerExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/richardcron/Desktop/popupmanager/Sources/PopupManager/PopupLink.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "224">
+               </Location>
+               <Location
+                  uuid = "D57A8B44-D7C3-4CAF-B97D-3CE3470D667C - f3c7a1af42a8726d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (__C.CGPoint) -&gt; () in PopupManager.PopupLink.body.getter : some"
+                  moduleName = "PopupManagerExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/richardcron/Desktop/popupmanager/Sources/PopupManager/PopupLink.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "232">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

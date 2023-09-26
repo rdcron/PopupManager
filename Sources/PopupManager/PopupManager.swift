@@ -9,6 +9,10 @@ import SwiftUI
 
 #if os(iOS)
 
+public enum AnimationSource {
+    case fromRect, fromPoint, fromBottom, fromTop, fromLeading, fromTrailing, fromCenter
+}
+
 // Popup dismiss environment key
 public typealias PopupDismiss = (() -> ())
 
@@ -40,11 +44,11 @@ public extension EnvironmentValues {
 }
 
 /// Environment key for ad hoc popups
-public typealias AdHocPopup = (CGFloat, CGFloat, Bool, @escaping () -> any View) -> ()
+public typealias AdHocPopup = (CGFloat, CGFloat, Bool, AnimationSource, @escaping () -> any View) -> ()
 
 
 public struct AdHocPopupKey: EnvironmentKey {
-    public static let defaultValue: AdHocPopup = {_,_,_,_  in}
+    public static let defaultValue: AdHocPopup = {_,_,_,_,_  in}
 }
 
 public extension EnvironmentValues {
@@ -66,6 +70,18 @@ public extension EnvironmentValues {
     }
 }
 
+/// Environment key to get PopupManagers rect
+public struct PMSizeKey: EnvironmentKey {
+    public static let defaultValue: CGSize = .zero
+}
+
+public extension EnvironmentValues {
+    var pmSize: CGSize {
+        get { self[PMSizeKey.self] }
+        set { self[PMSizeKey.self] = newValue }
+    }
+}
+
 /// A wrapper view that manages and presents popup views.
 /// Popup managers instantiate thier own PoupStack objects
 /// to store all active popups as well as some location data.
@@ -73,7 +89,9 @@ public extension EnvironmentValues {
 /// own named coordinateSpace. However they cannot be nested.
 public struct PopupManager<Content: View>: View {
     @StateObject private var stack = PopupStack()
-    
+    @State private var lastTouch = CGPoint.zero
+    @State private var localTouchActive = true
+    @State private var localSize = CGSize.zero
     
     public var content: () -> Content
     
@@ -83,8 +101,26 @@ public struct PopupManager<Content: View>: View {
         self.content = content
     }
     
-    func adHoc(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, popup: @escaping () -> any View) {
-        stack.push(.init(popup: AnyView(popup()), widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses: touchOutsideDismisses, source: nil))
+    func adHoc(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, animationSource: AnimationSource = .fromPoint, popup: @escaping () -> any View) {
+        var animationPoint = CGPoint.zero
+        
+        switch animationSource {
+            
+        case .fromRect, .fromPoint:
+            animationPoint = lastTouch
+        case .fromBottom:
+            animationPoint = CGPoint(x: localSize.width / 2, y: localSize.height)
+        case .fromTop:
+            animationPoint = CGPoint(x: localSize.width / 2, y: 0)
+        case .fromLeading:
+            animationPoint = CGPoint(x: 0, y: localSize.height / 2)
+        case .fromTrailing:
+            animationPoint = CGPoint(x: localSize.width, y: localSize.height / 2)
+        case .fromCenter:
+            animationPoint = CGPoint(x: localSize.width / 2, y: localSize.height / 2)
+        }
+        
+        stack.push(.init(popup: AnyView(popup()), widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses: touchOutsideDismisses, source: animationPoint))
     }
     
     
@@ -94,6 +130,7 @@ public struct PopupManager<Content: View>: View {
                     content()
                         .environmentObject(stack)
                         .environment(\.adHocPopup, adHoc)
+                        .environment(\.pmSize, geo.size)
                         .frame(width: geo.size.width, height: geo.size.height)
                 
                 if !stack.items.isEmpty {
@@ -114,12 +151,13 @@ public struct PopupManager<Content: View>: View {
                             .environment(\.popupDismiss, { stack.pop() })
                             .environment(\.clearPopupStack, { stack.clear() })
                             .environment(\.adHocPopup, adHoc)
-                            .environment(\.popupTouchLocation, stack.topSource ?? .zero)
+                            .environment(\.popupTouchLocation, lastTouch)
                         if stack.items.count > 1 {
                             if let index = stack.items.firstIndex(of: popup) {
                                 if index > 0 {
                                     // If there is more than one popup active, this grays-out all but the top popup
                                     Color(white: 0, opacity: 0.5)
+                                        .transition(.opacity)
                                         .onTapGesture(count: 1) {
                                             if stack.items[0].touchOutsideDismisses {
                                                 stack.pop()
@@ -128,6 +166,7 @@ public struct PopupManager<Content: View>: View {
                                 }
                             }
                         }
+                            
                     }
                     .frame(width: geo.size.width * popup.widthMultiplier, height: geo.size.height * popup.heightMultiplier)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
@@ -143,7 +182,28 @@ public struct PopupManager<Content: View>: View {
                 .zIndex(1)
             }
             .coordinateSpace(name: stack.coordinateNamespace)
+            
+            .onAppear {
+                localSize = geo.size
+            }
+            .onChange(of: geo.size) { newVal in
+                localSize = newVal
+            }
         }
+        .simultaneousGesture(TapGesture()
+            .onEnded {}
+            .simultaneously(with:
+                DragGesture(minimumDistance: 0, coordinateSpace: .local)
+            .onChanged { value in
+                if localTouchActive {
+                    localTouchActive = false
+                    lastTouch = value.location
+                    print(lastTouch)
+                }
+            }
+                .onEnded { _ in
+                    localTouchActive = true
+                }), including: GestureMask.all)
     }
     
     func midOffset(_ midPoint: CGPoint) -> CGSize {

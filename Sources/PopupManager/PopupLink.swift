@@ -11,11 +11,9 @@ import SwiftUI
 
 
 public struct PopupLink<LabelView: View, Popup: View>: View {
-    public enum AnimationSource {
-        case fromRect, fromPoint
-    }
     
     @EnvironmentObject private var stack: PopupStack
+    @Environment(\.pmSize) var pmSize
     
     var widthMultiplier: CGFloat
     var heightMultiplier: CGFloat
@@ -29,6 +27,10 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
     @State private var rect = CGRect.zero
     @State private var midX = CGFloat.zero
     @State private var midY = CGFloat.zero
+    @State private var globalLeading = CGPoint.zero
+    @State private var globalTrailing = CGPoint.zero
+    @State private var globalTop = CGPoint.zero
+    @State private var globalBottom = CGPoint.zero
     
     public init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, animationSource: AnimationSource = .fromRect, popup: @escaping () -> Popup, label: @escaping () -> LabelView) {
         self.widthMultiplier = widthMultiplier.clamped(to: 0.1...1.0)
@@ -59,6 +61,21 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
                     // Popup animates from the touch location within the label
                     xOffset = location.x
                     yOffset = location.y
+                case .fromBottom:
+                    xOffset = pmSize.width / 2
+                    yOffset = pmSize.height
+                case .fromTop:
+                    xOffset = pmSize.width / 2
+                    yOffset = 0
+                case .fromLeading:
+                    xOffset = 0
+                    yOffset = pmSize.height / 2
+                case .fromTrailing:
+                    xOffset = pmSize.width
+                    yOffset = pmSize.height / 2
+                case .fromCenter:
+                    xOffset = pmSize.width / 2
+                    yOffset = pmSize.height / 2
                 }
                 
                 stack.push(.init(popup: AnyView(popup()), widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses: touchOutsideDismisses, source: CGPoint(x: xOffset, y: yOffset)))
