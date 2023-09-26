@@ -18,20 +18,8 @@ struct HueAdjustView: View {
             VStack {
                 Text("Hue")
                 
-                Slider(value: $hue, in: 0.0 ... 1.0) {
+                PMSlider(value: $hue, in: 0.0 ... 1.0) {
                     Text("Hue adjustment slider")
-                }
-//            minimumValueLabel: {
-//                    Text("0.0")
-//                } maximumValueLabel: {
-//                    Text("1.0")
-//                }
-//                .tint(Color("LinkYellow"))
-                
-                Text("Saturation")
-                
-                Slider(value: $sat, in: 0.0 ... 1.0) {
-                    Text("Saturation adjustment slider")
                 } minimumValueLabel: {
                     Text("0.0")
                 } maximumValueLabel: {
@@ -39,9 +27,22 @@ struct HueAdjustView: View {
                 }
                 .tint(Color("LinkYellow"))
                 
+                Text("Saturation")
+                
+                PMSlider(value: $sat, in: 0.0 ... 1.0) {
+                    Text("Saturation adjustment slider")
+                } minimumValueLabel: {
+                    Text("0.0")
+                } maximumValueLabel: {
+                    Text("1.0")
+                }
+                .tint(Color("LinkYellow"))
+                .frame(height: 100)
+                .border(.red)
+                
                 Text("Brightness")
                 
-                Slider(value: $bright, in: 0.0 ... 1.0) {
+                PMSlider(value: $bright, in: 0.0 ... 1.0) {
                     Text("Brightness adjustment slider")
                 } minimumValueLabel: {
                     Text("0.0")
