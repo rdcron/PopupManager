@@ -90,7 +90,7 @@ var body: some View {
                     case "popup3":
                         adHoc(0.5, 0.5, true, .fromPoint) {
                             PopupView {
-                                Text("Since ad hoc popups don't have a specific link, there is no view center to animate from. Therefore, setting animationSource to either .fromPoint or .fromRect has the .fromPoint behavior.")
+                                Text("Since ad hoc popups don't have a specific link, there is no view center to animate from. Therefore, setting presentaionMode to either .fromPoint or .fromRect has the .fromPoint behavior.")
                             }
                         }
                         return .handled

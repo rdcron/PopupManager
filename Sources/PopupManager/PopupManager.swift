@@ -9,7 +9,7 @@ import SwiftUI
 
 #if os(iOS)
 
-public enum AnimationSource {
+public enum PresentationMode {
     case fromRect, fromPoint, fromBottom, fromTop, fromLeading, fromTrailing, fromCenter
 }
 
@@ -44,7 +44,7 @@ public extension EnvironmentValues {
 }
 
 /// Environment key for ad hoc popups
-public typealias AdHocPopup = (CGFloat, CGFloat, Bool, AnimationSource, @escaping () -> any View) -> ()
+public typealias AdHocPopup = (CGFloat, CGFloat, Bool, PresentationMode, @escaping () -> any View) -> ()
 
 
 public struct AdHocPopupKey: EnvironmentKey {
@@ -101,10 +101,10 @@ public struct PopupManager<Content: View>: View {
         self.content = content
     }
     
-    func adHoc(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, animationSource: AnimationSource = .fromPoint, popup: @escaping () -> any View) {
+    func adHoc(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentaionMode: PresentationMode = .fromPoint, popup: @escaping () -> any View) {
         var animationPoint = CGPoint.zero
         
-        switch animationSource {
+        switch presentaionMode {
             
         case .fromRect, .fromPoint:
             animationPoint = lastTouch

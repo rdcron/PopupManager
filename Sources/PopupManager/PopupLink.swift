@@ -18,7 +18,7 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
     var widthMultiplier: CGFloat
     var heightMultiplier: CGFloat
     var touchOutsideDismisses: Bool
-    var animationSource: AnimationSource
+    var presentaionMode: PresentationMode
     
     var label: () -> LabelView
     var popup: () -> Popup
@@ -32,11 +32,11 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
     @State private var globalTop = CGPoint.zero
     @State private var globalBottom = CGPoint.zero
     
-    public init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, animationSource: AnimationSource = .fromRect, popup: @escaping () -> Popup, label: @escaping () -> LabelView) {
+    public init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentaionMode: PresentationMode = .fromRect, popup: @escaping () -> Popup, label: @escaping () -> LabelView) {
         self.widthMultiplier = widthMultiplier.clamped(to: 0.1...1.0)
         self.heightMultiplier = heightMultiplier.clamped(to: 0.1...1.0)
         self.touchOutsideDismisses = touchOutsideDismisses
-        self.animationSource = animationSource
+        self.presentaionMode = presentaionMode
         self.label = label
         self.popup = popup
     }
@@ -52,7 +52,7 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
                 var xOffset = CGFloat.zero
                 var yOffset = CGFloat.zero
                 
-                switch animationSource {
+                switch presentaionMode {
                 case .fromRect:
                     // Popup animates from the center of the label
                     xOffset = rect.origin.x + midX
