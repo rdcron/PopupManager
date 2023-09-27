@@ -68,7 +68,7 @@ var body: some View {
                 .environment(\.openURL, OpenURLAction { url in
                     switch url.absoluteString {
                     case "popup1":
-                        adHoc(0.85, 0.6, true, .fromPoint) {
+                        adHoc(0.85, 0.6, true, .fromPoint, {
                             PopupView {
                                 VStack {
                                     CodeBlock(text: "public typealias AdHocPopup = (CGFloat, CGFloat, Bool, @escaping () -> any View) -> ()")
@@ -77,22 +77,22 @@ var body: some View {
                                     Text("The parameters corespond to 'widthMultiplier, heightMultiplier, touchOutsideDismisses, and the popup closure itself.")
                                 }
                             }
-                        }
+                        }, {})
                         return .handled
                     case "popup2":
-                        adHoc(0.85, 0.95, true, .fromPoint) {
+                        adHoc(0.85, 0.95, true, .fromPoint, {
                             PopupView {
                                 CodeBlock(text: openUrlExample)
                                     .minimumScaleFactor(0.5)
                             }
-                        }
+                        }, {})
                         return .handled
                     case "popup3":
-                        adHoc(0.5, 0.5, true, .fromPoint) {
+                        adHoc(0.5, 0.5, true, .fromPoint, {
                             PopupView {
                                 Text("Since ad hoc popups don't have a specific link, there is no view center to animate from. Therefore, setting presentaionMode to either .fromPoint or .fromRect has the .fromPoint behavior.")
                             }
-                        }
+                        }, {})
                         return .handled
                     default:
                         return .discarded

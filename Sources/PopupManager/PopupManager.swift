@@ -44,11 +44,11 @@ public extension EnvironmentValues {
 }
 
 /// Environment key for ad hoc popups
-public typealias AdHocPopup = (CGFloat, CGFloat, Bool, PresentationMode, @escaping () -> any View) -> ()
+public typealias AdHocPopup = (CGFloat, CGFloat, Bool, PresentationMode, @escaping () -> any View, @escaping () -> ()) -> ()
 
 
 public struct AdHocPopupKey: EnvironmentKey {
-    public static let defaultValue: AdHocPopup = {_,_,_,_,_  in}
+    public static let defaultValue: AdHocPopup = {_,_,_,_,_,_  in}
 }
 
 public extension EnvironmentValues {
@@ -101,7 +101,7 @@ public struct PopupManager<Content: View>: View {
         self.content = content
     }
     
-    func adHoc(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentaionMode: PresentationMode = .fromPoint, popup: @escaping () -> any View) {
+    func adHoc(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentaionMode: PresentationMode = .fromPoint, popup: @escaping () -> any View, onDismiss: @escaping () -> () = {}) {
         var animationPoint = CGPoint.zero
         
         switch presentaionMode {
@@ -120,7 +120,7 @@ public struct PopupManager<Content: View>: View {
             animationPoint = CGPoint(x: localSize.width / 2, y: localSize.height / 2)
         }
         
-        stack.push(.init(popup: AnyView(popup()), widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses: touchOutsideDismisses, source: animationPoint))
+        stack.push(.init(popup: AnyView(popup()), widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses: touchOutsideDismisses, source: animationPoint, onDismiss: onDismiss))
     }
     
     
@@ -138,6 +138,7 @@ public struct PopupManager<Content: View>: View {
                         .onTapGesture(count: 1) {
                             if let item = stack.items.first {
                                 if item.touchOutsideDismisses {
+                                    item.onDismiss()
                                     stack.pop()
                                 }
                             }
@@ -160,6 +161,7 @@ public struct PopupManager<Content: View>: View {
                                         .transition(.opacity)
                                         .onTapGesture(count: 1) {
                                             if stack.items[0].touchOutsideDismisses {
+                                                stack.items[0].onDismiss()
                                                 stack.pop()
                                             }
                                         }

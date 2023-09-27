@@ -22,6 +22,7 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
     
     var label: () -> LabelView
     var popup: () -> Popup
+    var onDismiss: () -> ()
     
     // Animation midpoint values
     @State private var rect = CGRect.zero
@@ -32,13 +33,14 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
     @State private var globalTop = CGPoint.zero
     @State private var globalBottom = CGPoint.zero
     
-    public init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentaionMode: PresentationMode = .fromRect, popup: @escaping () -> Popup, label: @escaping () -> LabelView) {
+    public init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentaionMode: PresentationMode = .fromRect, popup: @escaping () -> Popup, label: @escaping () -> LabelView, onDismiss: @escaping () -> () = {}) {
         self.widthMultiplier = widthMultiplier.clamped(to: 0.1...1.0)
         self.heightMultiplier = heightMultiplier.clamped(to: 0.1...1.0)
         self.touchOutsideDismisses = touchOutsideDismisses
         self.presentaionMode = presentaionMode
         self.label = label
         self.popup = popup
+        self.onDismiss = onDismiss
     }
     
     public var body: some View {
@@ -78,7 +80,7 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
                     yOffset = pmSize.height / 2
                 }
                 
-                stack.push(.init(popup: AnyView(popup()), widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses: touchOutsideDismisses, source: CGPoint(x: xOffset, y: yOffset)))
+                stack.push(.init(popup: AnyView(popup()), widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses: touchOutsideDismisses, source: CGPoint(x: xOffset, y: yOffset), onDismiss: onDismiss))
             }
             .onPreferenceChange(PMSizePreferenceKey.self) { newVal in
                 rect = newVal
@@ -116,10 +118,10 @@ public extension PopupLink where LabelView == Text {
     ///   - heightMultiplier: height of the popup view realative to its PopupManager
     ///   - label: String used in the label Text view
     ///   - popup: ViewBuilder closure used to create the popup view
-    init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, _ label: LocalizedStringKey, popup: @escaping () -> Popup) {
-        self.init(widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, popup: popup) {
+    init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, _ label: LocalizedStringKey, popup: @escaping () -> Popup, onDismiss: @escaping () -> () = {}) {
+        self.init(widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, popup: popup, label: {
             Text(label)
-        }
+        }, onDismiss: onDismiss)
     }
 }
 
@@ -130,20 +132,22 @@ struct Linked<Popup: View>: ViewModifier {
     var heightMultiplier: CGFloat
     var touchOutsideDismisses: Bool
     var popup: () -> Popup
+    var onDismiss: () -> ()
     
-    public init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, popup: @escaping () -> Popup) {
+    public init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, popup: @escaping () -> Popup, onDismiss: @escaping () -> () = {}) {
         self.widthMultiplier = widthMultiplier.clamped(to: 0.1...1.0)
         self.heightMultiplier = heightMultiplier.clamped(to: 0.1...1.0)
         self.touchOutsideDismisses = touchOutsideDismisses
         self.popup = popup
+        self.onDismiss = onDismiss
     }
     
     func body(content: Content) -> some View {
-        PopupLink(widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses:  touchOutsideDismisses) {
+        PopupLink(widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses:  touchOutsideDismisses, popup: {
             popup()
-        } label: {
+        }, label: {
             content
-        }
+        }, onDismiss: onDismiss)
     }
 }
 
@@ -156,8 +160,8 @@ public extension View {
     ///   - touchOutsideDismisses: Specifies whether tapping outside the popup dismisses it, default is true
     ///   - popup: ViewBuilder closure used to create the popup view
     /// - Returns: PopupLink-wrapped view
-    func popupLink<Popup: View>(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, popup: @escaping () -> Popup) -> some View {
-        modifier(Linked(widthMultiplier: widthMultiplier.clamped(to: 0.1...1.0), heightMultiplier: heightMultiplier.clamped(to: 0.1...1.0), touchOutsideDismisses: touchOutsideDismisses, popup: popup))
+    func popupLink<Popup: View>(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, popup: @escaping () -> Popup, onDismiss: @escaping () -> () = {}) -> some View {
+        modifier(Linked(widthMultiplier: widthMultiplier.clamped(to: 0.1...1.0), heightMultiplier: heightMultiplier.clamped(to: 0.1...1.0), touchOutsideDismisses: touchOutsideDismisses, popup: popup, onDismiss: onDismiss))
     }
 }
 
