@@ -23,7 +23,7 @@ struct BasicsView: View {
                     Spacer()
                 }
                 HStack {
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 20) {
 
                         PopupLink(heightMultiplier: 0.85) {
                             PMPopup()

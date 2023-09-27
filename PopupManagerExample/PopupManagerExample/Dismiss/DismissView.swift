@@ -36,6 +36,7 @@ struct DismissView: View {
                     .popupLink(widthMultiplier: 0.3, heightMultiplier: 0.9) {
                         ClearStackOne()
                     }
+                    .padding(.top, 10)
             }
         }
     }
