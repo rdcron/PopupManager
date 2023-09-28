@@ -9,7 +9,7 @@ import SwiftUI
 
 #if os(iOS)
 
-public enum PresentationMode {
+public enum PopupPresentationMode {
     case fromRect, fromPoint, fromBottom, fromTop, fromLeading, fromTrailing, fromCenter
 }
 
@@ -44,15 +44,32 @@ public extension EnvironmentValues {
 }
 
 /// Environment key for ad hoc popups
-public typealias AdHocPopup = (CGFloat, CGFloat, Bool, PresentationMode, @escaping () -> any View, @escaping () -> ()) -> ()
+
+/// Closure type for ad hoc popups
+/// - Parameters:
+///   - widthMultiplier: multiple of root PopupManger view width, from 0.1-1.0
+///   - heightMultiplier: multiple of root PopupManger view height, from 0.1-1.0
+///   - touchOutsideDismisses: Boolean setting the touch behavior of the area outside the popup
+///   - presentaionMode: PresentationMode enum value setting how popups are presented
+///   - popup: closure defining the popup view
+///   - onDismiss: callback closure
+public typealias AdHocPopup = (_ widthMultiplier:CGFloat,_ heightMultiplier:CGFloat,_ touchesOutsideDismiss:Bool,_ presentationMode:PopupPresentationMode,_ popup:@escaping () -> any View,_ onDismiss:@escaping () -> ()) -> ()
 
 
 public struct AdHocPopupKey: EnvironmentKey {
+    /// Closure type for ad hoc popups
+    /// - Parameters:
+    ///   - widthMultiplier: multiple of root PopupManger view width, from 0.1-1.0
+    ///   - heightMultiplier: multiple of root PopupManger view height, from 0.1-1.0
+    ///   - touchOutsideDismisses: Boolean setting the touch behavior of the area outside the popup
+    ///   - presentaionMode: PresentationMode enum value setting how popups are presented
+    ///   - popup: closure defining the popup view
+    ///   - onDismiss: callback closure
     public static let defaultValue: AdHocPopup = {_,_,_,_,_,_  in}
 }
 
 public extension EnvironmentValues {
-    var adHocPopup: AdHocPopup {
+    fileprivate (set) var adHocPopup: AdHocPopup {
         get { self[AdHocPopupKey.self] }
         set { self[AdHocPopupKey.self] = newValue }
     }
@@ -101,7 +118,15 @@ public struct PopupManager<Content: View>: View {
         self.content = content
     }
     
-    func adHoc(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentaionMode: PresentationMode = .fromPoint, popup: @escaping () -> any View, onDismiss: @escaping () -> () = {}) {
+    /// Implementation of ad hoc popup function
+    /// - Parameters:
+    ///   - widthMultiplier: multiple of root PopupManger view width, from 0.1-1.0
+    ///   - heightMultiplier: multiple of root PopupManger view height, from 0.1-1.0
+    ///   - touchOutsideDismisses: Boolean setting the touch behavior of the area outside the popup
+    ///   - presentaionMode: PresentationMode enum value setting how popups are presented
+    ///   - popup: closure defining the popup view
+    ///   - onDismiss: callback closure
+    func adHoc(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentaionMode: PopupPresentationMode = .fromPoint, popup: @escaping () -> any View, onDismiss: @escaping () -> () = {}) {
         var animationPoint = CGPoint.zero
         
         switch presentaionMode {
@@ -138,7 +163,6 @@ public struct PopupManager<Content: View>: View {
                         .onTapGesture(count: 1) {
                             if let item = stack.items.first {
                                 if item.touchOutsideDismisses {
-                                    item.onDismiss()
                                     stack.pop()
                                 }
                             }
@@ -161,7 +185,6 @@ public struct PopupManager<Content: View>: View {
                                         .transition(.opacity)
                                         .onTapGesture(count: 1) {
                                             if stack.items[0].touchOutsideDismisses {
-                                                stack.items[0].onDismiss()
                                                 stack.pop()
                                             }
                                         }
