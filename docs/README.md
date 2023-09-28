@@ -141,7 +141,7 @@ This allows customizing how the popup dismissal process works. It is of course p
 
 Simillarly, all active popups can be dismissed at once using the `@Environment(\.clearPopupStack)` environment value. The syntax is identical to using `popupDismiss`.
 
-## **Presentation Modes**
+### **Presentation Modes**
 
 The `PopupPresentationMode` enum declares several modes for presenting popup views. The cases are:
 
