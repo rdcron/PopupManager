@@ -159,6 +159,14 @@ It's important to note that all of these presentation are realative to the `Popu
 
 SwiftUI's built-in `Slider` does not work with this package, and after some research online this seems to ba a bug in `Slider` itself. `PopupManager` intercepts all touches to track the most recent tap(partly to help in presenting ad hoc popups) before passing the touches on to the enclosed views. This seems to work fine for everything except `Slider`s(though more issues could still be discovered). Whether the problem is with `Slider` or with the package, a custom slider view `PMSlider` is included with the package. `PMSlider` was written to be as similar as possible to `Slider`, and in most cases existing slider code should work as-is by importing `PopupManager` and inserting 'PM' in front of any `Slider` declarations.
 
+## **Example Project**
+
+This repository includes an example project, the creativly named 'PopupManagerExample'. The project itelf demonstrates many ways to use the package, and running the app gives examples of how the library works.
+
+## **Installing**
+
+`PopupManager` is a Swift package and can be installed using the Swift Package Manager. `PopupManager` is an iOS specific package, as it doesn't seem to serve a purpose on Mac. Also, the developer of this package hasn't done any Mac development.
+
 ## **Known issues**
 
 * The ad hoc popup syntax isn't great, hopefully a way to make it more 'Swifty' can be found.
