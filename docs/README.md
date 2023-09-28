@@ -157,7 +157,7 @@ It's important to note that all of these presentation are realative to the `Popu
 
 ## **PMSlider**
 
-SwiftUI's built-in `Slider` does not work with this package, and after some research online this seems to ba a bug in `Slider` itself. `PopupManager` intercepts all touches to track the most recent tap(partly to help in presenting ad hoc popups) before passing the touches on to the enclosed views. This seems to work fine for everything except `Slider`s(though more issues could still be discovered). Whether the problem is with `Slider` or with the package, a custom slider view `PMSlider` is included with the package. `PMSlider` was written to be as similar as possible to `Slider`, and in most cases existing slider code should work as-is by importing `PopupManager` and inserting 'PM' in front of any `Slider` declarations.
+SwiftUI's built-in `Slider` does not work with this package, and after some research online this seems to be a bug in `Slider` itself. `PopupManager` intercepts all touches to track the most recent tap(partly to help in presenting ad hoc popups) before passing the touches on to the enclosed views. This seems to work fine for everything except `Slider`s(though more issues could still be discovered). Whether the problem is with `Slider` or with the package, a custom slider view `PMSlider` is included with the package. `PMSlider` was written to be as similar as possible to `Slider`, and in most cases existing slider code should work as-is by importing `PopupManager` and inserting 'PM' in front of any `Slider` declarations.
 
 ## **Example Project**
 
