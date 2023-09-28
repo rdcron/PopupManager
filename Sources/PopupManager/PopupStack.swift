@@ -32,7 +32,8 @@ internal class PopupStack: ObservableObject {
     func pop()  {
         withAnimation(.easeIn(duration: 0.2)) {
             if !items.isEmpty {
-                _ = items.removeFirst()
+                let item = items.removeFirst()
+                item.onDismiss()
             }
         }
         if let newTop = items.first {
