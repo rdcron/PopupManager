@@ -18,7 +18,7 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
     var widthMultiplier: CGFloat
     var heightMultiplier: CGFloat
     var touchOutsideDismisses: Bool
-    var presentaionMode: PresentationMode
+    var presentaionMode: PopupPresentationMode
     
     var label: () -> LabelView
     var popup: () -> Popup
@@ -33,7 +33,7 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
     @State private var globalTop = CGPoint.zero
     @State private var globalBottom = CGPoint.zero
     
-    public init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentaionMode: PresentationMode = .fromRect, popup: @escaping () -> Popup, label: @escaping () -> LabelView, onDismiss: @escaping () -> () = {}) {
+    public init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentaionMode: PopupPresentationMode = .fromRect, popup: @escaping () -> Popup, label: @escaping () -> LabelView, onDismiss: @escaping () -> () = {}) {
         self.widthMultiplier = widthMultiplier.clamped(to: 0.1...1.0)
         self.heightMultiplier = heightMultiplier.clamped(to: 0.1...1.0)
         self.touchOutsideDismisses = touchOutsideDismisses
