@@ -9,6 +9,8 @@ import SwiftUI
 import PopupManager
 
 struct BasicsView: View {
+    @Environment(\.adHocPopup) var adHoc
+    
     let infoText: LocalizedStringKey = "_Code for these links can be found in:_\n**/Basics/BasicsView.swift**"
     
     var body: some View {
@@ -37,7 +39,19 @@ struct BasicsView: View {
                         } label: {
                             Text("PopupLink()")
                                 .linkFormat()
+                        } onDismiss: {
+                            adHoc(0.4, 0.4, true, .fromTop, {
+                                PopupView {
+                                    Text("An 'onDismiss' callback can be set for all types of popups. These can do things like call an ad hoc popup (such as this one) or any other action needed when the popup is dismissed.")
+                                }
+                            }, {})
                         }
+                        
+                        Text("Presentation modes")
+                            .linkFormat()
+                            .popupLink {
+                                PresentationModeView()
+                            }
                         
                     }
                     .padding(.leading, 40)

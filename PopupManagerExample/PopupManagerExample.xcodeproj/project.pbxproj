@@ -12,7 +12,6 @@
 		8D0666ED2AB7D5690057F16D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D0666EC2AB7D5690057F16D /* Assets.xcassets */; };
 		8D0666F02AB7D5690057F16D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D0666EF2AB7D5690057F16D /* Preview Assets.xcassets */; };
 		8D0666F82AB7D5AB0057F16D /* PopupManager in Frameworks */ = {isa = PBXBuildFile; productRef = 8D0666F72AB7D5AB0057F16D /* PopupManager */; };
-		8D0666FB2AB7D6350057F16D /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8D0666FA2AB7D6350057F16D /* MarkdownUI */; };
 		8D22E7FD2ABA3B1B00CBB541 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22E7FC2ABA3B1B00CBB541 /* CellView.swift */; };
 		8D22E7FF2ABA3C7900CBB541 /* PMPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22E7FE2ABA3C7900CBB541 /* PMPopup.swift */; };
 		8D22E8012ABA3CE200CBB541 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D22E8002ABA3CE200CBB541 /* PopupView.swift */; };
@@ -31,6 +30,7 @@
 		8D8330822AB93E2E00807527 /* IntroPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8330812AB93E2E00807527 /* IntroPopup.swift */; };
 		8D8330852AB942C200807527 /* BasicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8330842AB942C200807527 /* BasicsView.swift */; };
 		8D8330882AB947CA00807527 /* LinkFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8330872AB947CA00807527 /* LinkFormat.swift */; };
+		8D8395DC2AC4C37500C3C89C /* PresentationModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8395DB2AC4C37500C3C89C /* PresentationModeView.swift */; };
 		8DA3CDFC2ABF830F00B55CE2 /* DismissView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA3CDFB2ABF830F00B55CE2 /* DismissView.swift */; };
 		8DA3CDFE2ABF85A800B55CE2 /* DismissEnvKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA3CDFD2ABF85A800B55CE2 /* DismissEnvKeyView.swift */; };
 		8DA3CE012ABF8BD500B55CE2 /* ClearStackOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA3CE002ABF8BD500B55CE2 /* ClearStackOne.swift */; };
@@ -64,6 +64,7 @@
 		8D8330842AB942C200807527 /* BasicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicsView.swift; sourceTree = "<group>"; };
 		8D8330872AB947CA00807527 /* LinkFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkFormat.swift; sourceTree = "<group>"; };
 		8D83308A2AB9505400807527 /* popupmanager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = popupmanager; path = ..; sourceTree = "<group>"; };
+		8D8395DB2AC4C37500C3C89C /* PresentationModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationModeView.swift; sourceTree = "<group>"; };
 		8DA3CDFB2ABF830F00B55CE2 /* DismissView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissView.swift; sourceTree = "<group>"; };
 		8DA3CDFD2ABF85A800B55CE2 /* DismissEnvKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissEnvKeyView.swift; sourceTree = "<group>"; };
 		8DA3CE002ABF8BD500B55CE2 /* ClearStackOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearStackOne.swift; sourceTree = "<group>"; };
@@ -79,7 +80,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D0666F82AB7D5AB0057F16D /* PopupManager in Frameworks */,
-				8D0666FB2AB7D6350057F16D /* MarkdownUI in Frameworks */,
 				8D6470D52ABD2B7F002688C4 /* Splash in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +137,7 @@
 				8DD784482ABE98D2000BF3EF /* ViewModifierPLView.swift */,
 				8DA3CE062ABFBAE900B55CE2 /* ParamDetailsView.swift */,
 				8D3E39902ABFE4C2002D0EC3 /* AdHocLinkView.swift */,
+				8D8395DB2AC4C37500C3C89C /* PresentationModeView.swift */,
 			);
 			path = PLPopup;
 			sourceTree = "<group>";
@@ -237,7 +238,6 @@
 			name = PopupManagerExample;
 			packageProductDependencies = (
 				8D0666F72AB7D5AB0057F16D /* PopupManager */,
-				8D0666FA2AB7D6350057F16D /* MarkdownUI */,
 				8D6470D42ABD2B7F002688C4 /* Splash */,
 			);
 			productName = PopupManagerExample;
@@ -270,7 +270,6 @@
 			mainGroup = 8D0666DC2AB7D5690057F16D;
 			packageReferences = (
 				8D0666F62AB7D5AB0057F16D /* XCRemoteSwiftPackageReference "PopupManager" */,
-				8D0666F92AB7D6350057F16D /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 				8D6470D32ABD2B7F002688C4 /* XCRemoteSwiftPackageReference "Splash" */,
 			);
 			productRefGroup = 8D0666E62AB7D5690057F16D /* Products */;
@@ -303,6 +302,7 @@
 				8D6871922AC0C453007E8D05 /* FromLocationAnimationView.swift in Sources */,
 				8DA3CE012ABF8BD500B55CE2 /* ClearStackOne.swift in Sources */,
 				8D6871902AC0BD47007E8D05 /* MultiManagerView.swift in Sources */,
+				8D8395DC2AC4C37500C3C89C /* PresentationModeView.swift in Sources */,
 				8D6871942AC0CE65007E8D05 /* LocationPopupView.swift in Sources */,
 				8DA3CE032ABF8C1F00B55CE2 /* ClearStackTwo.swift in Sources */,
 				8D22E8012ABA3CE200CBB541 /* PopupView.swift in Sources */,
@@ -535,14 +535,6 @@
 				kind = branch;
 			};
 		};
-		8D0666F92AB7D6350057F16D /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 		8D6470D32ABD2B7F002688C4 /* XCRemoteSwiftPackageReference "Splash" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JohnSundell/Splash.git";
@@ -558,11 +550,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8D0666F62AB7D5AB0057F16D /* XCRemoteSwiftPackageReference "PopupManager" */;
 			productName = PopupManager;
-		};
-		8D0666FA2AB7D6350057F16D /* MarkdownUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8D0666F92AB7D6350057F16D /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
-			productName = MarkdownUI;
 		};
 		8D6470D42ABD2B7F002688C4 /* Splash */ = {
 			isa = XCSwiftPackageProductDependency;

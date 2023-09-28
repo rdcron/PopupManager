@@ -10,12 +10,24 @@ import PopupManager
 
 struct AdHocLinkView: View {
     @Environment(\.adHocPopup) var adHoc
+    
+    let adHodCodeBlock =
+"""
+adHoc(0.6, 0.6, true, .fromTop, {
+    PopupView {
+        AlertPopup()
+    }
+}, {})
+"""
+    
     var text = {
         if var txt = try? AttributedString(markdown:
 """
-Ad hoc links can be created by using the [adHocPopup](popup1) Environment Value. This allows a popup to be activated by a function call or system event. One use is to create [in-line links](popup2) using AttributedString and accessing the openURL environment value to intercept the link and open a [popup](popup3).
+Ad hoc links can be created by using the [adHocPopup](popup1) Environment Value. Because Swift currently doesn't allow argument labels or default values for parameters in closures ([SE-0111](https://github.com/apple/swift-evolution/blob/main/proposals/0111-remove-arg-label-type-significance.md)), the [code](popup4) for ad hoc popups is not very pretty. It does, however, allow a popup to be activated by a function call or system event. One use is to create [in-line links](popup2) using AttributedString and accessing the openURL environment value to intercept the link and open a [popup](popup3).
 """) {
             var linkRange = txt.range(of: "adHocPopup")
+            txt[linkRange!].underlineStyle = Text.LineStyle.single
+            linkRange = txt.range(of: "code")
             txt[linkRange!].underlineStyle = Text.LineStyle.single
             linkRange = txt.range(of: "in-line links")
             txt[linkRange!].underlineStyle = Text.LineStyle.single
@@ -71,10 +83,10 @@ var body: some View {
                         adHoc(0.85, 0.6, true, .fromPoint, {
                             PopupView {
                                 VStack {
-                                    CodeBlock(text: "public typealias AdHocPopup = (CGFloat, CGFloat, Bool, @escaping () -> any View) -> ()")
+                                    CodeBlock(text: "public typealias AdHocPopup = (CGFloat, CGFloat, Bool, @escaping () -> any View, () -> ()) -> ()")
                                         .minimumScaleFactor(0.4)
                                  
-                                    Text("The parameters corespond to 'widthMultiplier, heightMultiplier, touchOutsideDismisses, and the popup closure itself.")
+                                    Text("The parameters corespond to 'widthMultiplier, heightMultiplier, touchOutsideDismisses, the popup closure itself, and th onDismiss callback closure. No 'PopupLink' is involved, there is no parameter to define one.")
                                 }
                             }
                         }, {})
@@ -94,8 +106,18 @@ var body: some View {
                             }
                         }, {})
                         return .handled
+                    case "popup4":
+                        adHoc(0.5, 0.5, true, .fromPoint, {
+                            PopupView {
+                                VStack {
+                                    CodeBlock(text: adHodCodeBlock)
+                                    Text("Even if no 'onDismiss' callback is set, an empty closure must be provided as the final argument.")
+                                }
+                            }
+                        }, {})
+                        return .handled
                     default:
-                        return .discarded
+                        return .systemAction
                     }
                 })
                 .tint(Color("LinkYellow"))

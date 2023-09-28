@@ -13,7 +13,7 @@ struct PLPopup: View {
         PopupView(infoText: "_Code for these links can be found in:_\n**/Basics/PLPopup/PLPopup.swift**") {
             VStack {
                 Text("'PopupLink()' designates a tappable label view and provides a closure for the popup activated by that label. The primary initializer for 'PopupLink()' is:")
-                CodeBlock(text: "public init(widthMultiplier:heightMultiplier:touchOutsideDismisses:presentaionMode:popup:label:)")
+                CodeBlock(text: "public init(widthMultiplier:heightMultiplier:touchOutsideDismisses:presentaionMode:popup:label:onDismiss:)")
                 
                 Text("(Parameter descriptions)")
                     .linkFormat()
