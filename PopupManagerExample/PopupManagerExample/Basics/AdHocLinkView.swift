@@ -13,6 +13,8 @@ struct AdHocView: View {
     
     let adHodCodeBlock =
 """
+@Environment(\\.adHocPopup) var adHoc
+...
 adHoc(0.6, 0.6, true, .fromTop, {
     PopupView {
         AlertPopup()
@@ -58,14 +60,14 @@ var body: some View {
         .environment(\\.openURL, OpenURLAction { url in
             switch url.absolutString {
             case "link1":
-                adHoc(0.75, 0.75, true) {
-                    Text("One tapped")
-                }
+                adHoc(0.75, 0.75, true, .fromRect, {
+                Text("One tapped")
+            }, {})
                 return .handled
             case "link2":
-                adHoc(0.75, 0.75, true) {
-                    Text("Two tapped")
-                }
+                adHoc(0.75, 0.75, true, .fromRect, {
+                Text("Two tapped")
+            }, {})
                 return .handled
             default:
                 return .discarded // or .systemAction to forward an unhandled url
