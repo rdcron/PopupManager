@@ -136,7 +136,6 @@
 				8D6470D72ABD3237002688C4 /* TextShortcutPLView.swift */,
 				8DD784482ABE98D2000BF3EF /* ViewModifierPLView.swift */,
 				8DA3CE062ABFBAE900B55CE2 /* ParamDetailsView.swift */,
-				8D3E39902ABFE4C2002D0EC3 /* AdHocLinkView.swift */,
 				8D8395DB2AC4C37500C3C89C /* PresentationModeView.swift */,
 			);
 			path = PLPopup;
@@ -176,6 +175,7 @@
 			children = (
 				8D6470D62ABD3103002688C4 /* PLPopup */,
 				8D8330842AB942C200807527 /* BasicsView.swift */,
+				8D3E39902ABFE4C2002D0EC3 /* AdHocLinkView.swift */,
 				8D22E7FE2ABA3C7900CBB541 /* PMPopup.swift */,
 			);
 			path = Basics;
