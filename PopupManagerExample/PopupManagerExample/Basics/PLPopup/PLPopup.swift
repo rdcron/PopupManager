@@ -9,11 +9,22 @@ import SwiftUI
 import PopupManager
 
 struct PLPopup: View {
+    let PLInitText =
+"""
+public init(widthMultiplier:CGFloat = 0.75,
+            heightMultiplier:CGFloat = 0.75,
+            touchOutsideDismisses:Bool = true,
+            presentaionMode:PopupPresentationMode = .fromRect,
+            popup:@escaping () -> Popup,
+            label:@escaping () -> LabelView,
+            onDismiss:() -> () = {})
+"""
+    
     var body: some View {
         PopupView(infoText: "_Code for these links can be found in:_\n**/Basics/PLPopup/PLPopup.swift**") {
             VStack {
                 Text("'PopupLink()' designates a tappable label view and provides a closure for the popup activated by that label. The primary initializer for 'PopupLink()' is:")
-                CodeBlock(text: "public init(widthMultiplier:heightMultiplier:touchOutsideDismisses:presentaionMode:popup:label:onDismiss:)")
+                CodeBlock(text: PLInitText)
                 
                 Text("(Parameter descriptions)")
                     .linkFormat()
