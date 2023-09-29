@@ -47,6 +47,12 @@ struct BasicsView: View {
                             }, {})
                         }
                         
+                        Text("Ad Hoc Popups")
+                            .linkFormat()
+                            .popupLink {
+                                AdHocView()
+                            }
+                        
                         Text("Presentation modes")
                             .linkFormat()
                             .popupLink {
