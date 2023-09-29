@@ -35,12 +35,6 @@ struct PLPopup: View {
                         ViewModifierPLView()
                     }
                 
-                Text("Ad hoc link")
-                    .linkFormat()
-                    .popupLink {
-                        AdHocLinkView()
-                    }
-                
                 Text("_Since 'PopupManager' is stack-based, popup views can contain their own 'PopupLink()s' which open new popup views._")
                     .font(.system(size: 22))
             }
