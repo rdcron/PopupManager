@@ -35,7 +35,7 @@ struct CodeBlock: View {
                     Image(systemName: "info.circle")
                         .resizable()
                         .foregroundColor(Color("DarkText"))
-                        .frame(maxWidth: 30, maxHeight: 30)
+                        .frame(maxWidth: 25, maxHeight: 25)
                         .padding()
                         .foregroundColor(Color("LinkYellow"))
                         .popupLink(widthMultiplier: 0.4, heightMultiplier: 0.4) {
