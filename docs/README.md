@@ -2,11 +2,11 @@
 
 ## **Overview**
 
-PopupManager is a Swift package that adds a new type of modal view to SwiftUI iOS projects. Popup views are defined by the user of the package, and can be presented in a number of ways. When dismissed, the reverse animation is performed. The PopupManager API is loosely based on the `NavigationStack` and `NavigationLink` APIs. The `PopupManager` struct manages a stack of active popups and handles the animation for presentation and dismissal of popup views. Each PopupManager maintains it's own named coordinate space, so multiple PopupManagers can be used, either on the same screen or on separate screens in the app. They cannot, however, be nested.
+PopupManager is a Swift package that adds a new type of modal view to SwiftUI iOS projects. Popup views are defined by the user of the package, and can be presented in a number of ways. When dismissed, the reverse animation is performed. The `PopupManager` API is loosely based on the `NavigationStack` and `NavigationLink` APIs. The `PopupManager` struct manages a stack of active popups and handles the animation for presentation and dismissal of popup views. Each `PopupManager` maintains it's own named coordinate space, so multiple `PopupManager`s can be used, either on the same screen or on separate screens in the app. They cannot, however, be nested.
 
 ## **Usage**
 
-PopupManagers are created with the init(content:) initializer. Within the content view, PopupLinks can be defined with a label(the tappable view) and a popup(the view presented when the label is tapped).
+`PopupManager`s are created with the init(content:) initializer. Within the content view, PopupLinks can be defined with a label(the tappable view) and a popup(the view presented when the label is tapped).
 
 ```Swift
 PopupManager {
@@ -21,7 +21,7 @@ PopupManager {
 
 The above example will create a tappable Text view which, when tapped, will present a blue rectangle to the screen. When popups are presented, the rest of the contents of the `PopupManager` is grayed-out. By default, tapping outside of the popup view itself will dismiss the popup. Alternate methods for dismissing popups will be covered below.
 
-Because PopupManager is stack-based, a presented popup can itself contain a `PopupLink` which will open a new popup. All active popups except the top one is grayed-out.
+Because `PopupManager` is stack-based, a presented popup can itself contain a `PopupLink` which will open a new popup. All active popups except the top one is grayed-out.
 
 There are multiple ways to define a PopupLink, and multiple optional parameters that can be used to customize the popup. In the above example, no size information was provided for the popup; this is because sizing of popups is realative to the PopupMangers content and is set to a default value. the parameters `widthMultiplier` and `heightMultiplier` can be set to a value from 0.1 to 1.0(the parameter values are clamped to this range), and specifies that particular dimension realative to the `PopupManager`. The default value for these parameters is 0.75.
 
@@ -161,11 +161,22 @@ SwiftUI's built-in `Slider` does not work with this package, and after some rese
 
 ## **Example Project**
 
-This repository includes an example project, the creativly named 'PopupManagerExample'. The project itelf demonstrates many ways to use the package, and running the app gives examples of how the library works.
+This repository includes an example project, the creativly named PopupManagerExample. The project itelf demonstrates many ways to use the package, and running the app gives examples of how the library works.
 
 ## **Installing**
 
-`PopupManager` is a Swift package and can be installed using the Swift Package Manager. `PopupManager` is an iOS specific package, as it doesn't seem to serve a purpose on Mac. Also, the developer of this package hasn't done any Mac development.
+PopupManager is a Swift package and can be installed using the Swift Package Manager. In Xcode, from the project to which you want to add PopupManager,
+
+1. Go to File/Add Packages...
+2. in the search bar, enter [https://github.com/rdcron/PopupManager.git](https://github.com/rdcron/PopupManager.git)
+
+Or you can clone the repository and use the package locally.
+
+ PopupManager is an iOS specific package, as it doesn't seem to serve a purpose on Mac. Also, the developer of this package hasn't done any Mac development.
+
+## **Dependancies**
+
+The PopupManager package itself doesn't use any external dependancies. The example project uses John Sundell's [Splash](https://github.com/JohnSundell/Splash) Swift package for code highlighting.
 
 ## **Known issues**
 
