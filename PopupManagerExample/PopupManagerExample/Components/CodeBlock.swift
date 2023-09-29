@@ -11,6 +11,20 @@ import Splash
 struct CodeBlock: View {
     let text: String
     
+    let creditText = {
+        if var txt = try? AttributedString(markdown:
+"""
+Text highlighting is provided by [John Sundell's Splash](https://github.com/JohnSundell/Splash) Swift package.
+""") {
+            var linkRange = txt.range(of: "John Sundell's Splash")
+            txt[linkRange!].underlineStyle = Text.LineStyle.single
+            
+            return txt
+        } else {
+            return ""
+        }
+    }
+    
     @State var blockSize = CGSize.zero
     
     var body: some View {
@@ -40,7 +54,7 @@ struct CodeBlock: View {
                         .foregroundColor(Color("LinkYellow"))
                         .popupLink(widthMultiplier: 0.4, heightMultiplier: 0.4) {
                             InfoPopupView {
-                                Text("Text highlighting is provided by John Sundell's 'Splash' Swift package.")
+                                Text(creditText())
                             }
                         }
                 }
