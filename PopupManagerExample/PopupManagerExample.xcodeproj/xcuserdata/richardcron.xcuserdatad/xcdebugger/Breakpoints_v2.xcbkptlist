@@ -30,8 +30,8 @@
             filePath = "../Sources/PopupManager/PopupManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "adHoc(widthMultiplier:heightMultiplier:touchOutsideDismisses:presentaionMode:popup:onDismiss:)"
             landmarkType = "7">
             <Locations>
@@ -108,8 +108,8 @@
             filePath = "../Sources/PopupManager/PopupManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
             landmarkName = "midOffset(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -124,8 +124,8 @@
             filePath = "../Sources/PopupManager/PopupLink.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -140,8 +140,8 @@
             filePath = "../Sources/PopupManager/PopupLink.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -272,6 +272,54 @@
             endingLineNumber = "39"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "23FDD63C-134E-45B5-B9B2-B8CAA870EF5C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PopupManagerExample/Basics/AdHocLinkView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "23FDD63C-134E-45B5-B9B2-B8CAA870EF5C - b7f8d4dbac880785"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (SwiftUI.DragGesture.Value) -&gt; () in PopupManagerExample.AdHocView.body.getter : some"
+                  moduleName = "PopupManagerExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/richardcron/Desktop/popupmanager/PopupManagerExample/PopupManagerExample/Basics/AdHocLinkView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "740">
+               </Location>
+               <Location
+                  uuid = "23FDD63C-134E-45B5-B9B2-B8CAA870EF5C - b7f8d4dbac880785"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (SwiftUI.DragGesture.Value) -&gt; () in PopupManagerExample.AdHocView.body.getter : some"
+                  moduleName = "PopupManagerExample"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/richardcron/Desktop/popupmanager/PopupManagerExample/PopupManagerExample/Basics/AdHocLinkView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "396">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
