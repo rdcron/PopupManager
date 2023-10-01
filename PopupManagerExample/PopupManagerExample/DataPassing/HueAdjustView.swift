@@ -20,7 +20,7 @@ struct HueAdjustView: View {
                     VStack(spacing: 5) {
                         Text("Hue")
                         
-                        PMSlider(value: $hue, in: 0.0 ... 1.0) {
+                        Slider(value: $hue, in: 0.0 ... 1.0) {
                             Text("Hue adjustment slider")
                         } minimumValueLabel: {
                             Text("0.0")
@@ -33,7 +33,7 @@ struct HueAdjustView: View {
                     VStack(spacing: 5) {
                         Text("Saturation")
                         
-                        PMSlider(value: $sat, in: 0.0 ... 1.0) {
+                        Slider(value: $sat, in: 0.0 ... 1.0) {
                             Text("Saturation adjustment slider")
                         } minimumValueLabel: {
                             Text("0.0")
@@ -46,7 +46,7 @@ struct HueAdjustView: View {
                     VStack(spacing: 5) {
                         Text("Brightness")
                         
-                        PMSlider(value: $bright, in: 0.0 ... 1.0) {
+                        Slider(value: $bright, in: 0.0 ... 1.0) {
                             Text("Brightness adjustment slider")
                         } minimumValueLabel: {
                             Text("0.0")
