@@ -134,19 +134,21 @@ struct Linked<Popup: View>: ViewModifier {
     var widthMultiplier: CGFloat
     var heightMultiplier: CGFloat
     var touchOutsideDismisses: Bool
+    var presentationMode: PopupPresentationMode
     var popup: () -> Popup
     var onDismiss: () -> ()
     
-    public init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, popup: @escaping () -> Popup, onDismiss: @escaping () -> () = {}) {
+    public init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentationMode: PopupPresentationMode = .fromRect, popup: @escaping () -> Popup, onDismiss: @escaping () -> () = {}) {
         self.widthMultiplier = widthMultiplier.clamped(to: 0.1...1.0)
         self.heightMultiplier = heightMultiplier.clamped(to: 0.1...1.0)
         self.touchOutsideDismisses = touchOutsideDismisses
+        self.presentationMode = presentationMode
         self.popup = popup
         self.onDismiss = onDismiss
     }
     
     func body(content: Content) -> some View {
-        PopupLink(widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses:  touchOutsideDismisses, popup: {
+        PopupLink(widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses:  touchOutsideDismisses, presentaionMode: presentationMode, popup: {
             popup()
         }, label: {
             content
@@ -163,8 +165,8 @@ public extension View {
     ///   - touchOutsideDismisses: Specifies whether tapping outside the popup dismisses it, default is true
     ///   - popup: ViewBuilder closure used to create the popup view
     /// - Returns: PopupLink-wrapped view
-    func popupLink<Popup: View>(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, popup: @escaping () -> Popup, onDismiss: @escaping () -> () = {}) -> some View {
-        modifier(Linked(widthMultiplier: widthMultiplier.clamped(to: 0.1...1.0), heightMultiplier: heightMultiplier.clamped(to: 0.1...1.0), touchOutsideDismisses: touchOutsideDismisses, popup: popup, onDismiss: onDismiss))
+    func popupLink<Popup: View>(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentationMode: PopupPresentationMode = .fromRect, popup: @escaping () -> Popup, onDismiss: @escaping () -> () = {}) -> some View {
+        modifier(Linked(widthMultiplier: widthMultiplier.clamped(to: 0.1...1.0), heightMultiplier: heightMultiplier.clamped(to: 0.1...1.0), touchOutsideDismisses: touchOutsideDismisses, presentationMode: presentationMode, popup: popup, onDismiss: onDismiss))
     }
 }
 

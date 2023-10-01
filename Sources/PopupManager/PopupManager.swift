@@ -120,7 +120,7 @@ public extension EnvironmentValues {
 /// own named coordinateSpace. However they cannot be nested.
 public struct PopupManager<Content: View>: View {
     @StateObject private var stack = PopupStack()
-    @State private var lastTouch = CGPoint.zero
+    @State private var currentTouch = CGPoint.zero
     @State private var localTouchActive = true
     @State private var localSize = CGSize.zero
     
@@ -146,7 +146,7 @@ public struct PopupManager<Content: View>: View {
         switch presentaionMode {
             
         case .fromRect, .fromPoint:
-            animationPoint = lastTouch
+            animationPoint = currentTouch
         case .fromBottom:
             animationPoint = CGPoint(x: localSize.width / 2, y: localSize.height)
         case .fromTop:
@@ -194,6 +194,7 @@ public struct PopupManager<Content: View>: View {
                             .environment(\.popupDismiss, { stack.pop() })
                             .environment(\.clearPopupStack, { stack.clear() })
                             .environment(\.adHocPopup, adHoc)
+                            .environment(\.pmSize, geo.size)
                         if stack.items.count > 1 {
                             if let index = stack.items.firstIndex(of: popup) {
                                 if index > 0 {
