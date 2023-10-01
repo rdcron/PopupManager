@@ -11,6 +11,20 @@ import SwiftUI
 
 public enum PopupPresentationMode {
     case fromRect, fromPoint, fromBottom, fromTop, fromLeading, fromTrailing, fromCenter
+    case fromProvided(point: CGPoint)
+}
+
+// Popup Coordinate space environment key
+
+public struct PopupCoordinatespaceKey: EnvironmentKey {
+    public static let defaultValue: UUID = UUID()
+}
+
+public extension EnvironmentValues {
+    var popupCoordinateSpace: UUID {
+        get { self[PopupCoordinatespaceKey.self] }
+        set { self[PopupCoordinatespaceKey.self] = newValue }
+    }
 }
 
 // Popup dismiss environment key
@@ -143,6 +157,8 @@ public struct PopupManager<Content: View>: View {
             animationPoint = CGPoint(x: localSize.width, y: localSize.height / 2)
         case .fromCenter:
             animationPoint = CGPoint(x: localSize.width / 2, y: localSize.height / 2)
+        case .fromProvided(let point):
+            animationPoint = point
         }
         
         stack.push(.init(popup: AnyView(popup()), widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses: touchOutsideDismisses, source: animationPoint, onDismiss: onDismiss))
@@ -156,6 +172,7 @@ public struct PopupManager<Content: View>: View {
                         .environmentObject(stack)
                         .environment(\.adHocPopup, adHoc)
                         .environment(\.pmSize, geo.size)
+                        .environment(\.popupCoordinateSpace, stack.coordinateNamespace)
                         .frame(width: geo.size.width, height: geo.size.height)
                 
                 if !stack.items.isEmpty {
@@ -173,10 +190,10 @@ public struct PopupManager<Content: View>: View {
                     ZStack {
                         popup.popup
                             .environmentObject(stack)
+                            .environment(\.popupCoordinateSpace, stack.coordinateNamespace)
                             .environment(\.popupDismiss, { stack.pop() })
                             .environment(\.clearPopupStack, { stack.clear() })
                             .environment(\.adHocPopup, adHoc)
-                            .environment(\.popupTouchLocation, lastTouch)
                         if stack.items.count > 1 {
                             if let index = stack.items.firstIndex(of: popup) {
                                 if index > 0 {
@@ -215,25 +232,24 @@ public struct PopupManager<Content: View>: View {
                 localSize = newVal
             }
         }
-        .simultaneousGesture(TapGesture()
-            .onEnded {}
-            .simultaneously(with:
-                DragGesture(minimumDistance: 0, coordinateSpace: .local)
-            .onChanged { value in
-                if localTouchActive {
-                    localTouchActive = false
-                    lastTouch = value.location
-                    print(lastTouch)
-                }
-            }
-                .onEnded { _ in
-                    localTouchActive = true
-                }), including: GestureMask.all)
+//        .simultaneousGesture(TapGesture()
+//            .onEnded {}
+//            .simultaneously(with:
+//                DragGesture(minimumDistance: 0, coordinateSpace: .local)
+//            .onChanged { value in
+//                if localTouchActive {
+//                    localTouchActive = false
+//                    lastTouch = value.location
+//                    print(lastTouch)
+//                }
+//            }
+//                .onEnded { _ in
+//                    localTouchActive = true
+//                }), including: GestureMask.all)
     }
     
     func midOffset(_ midPoint: CGPoint) -> CGSize {
         if let point = stack.topSource {
-            print(point)
             return CGSize(width: point.x - midPoint.x, height: point.y - midPoint.y)
         }
         
