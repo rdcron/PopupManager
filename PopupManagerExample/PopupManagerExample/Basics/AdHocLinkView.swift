@@ -9,7 +9,12 @@ import SwiftUI
 import PopupManager
 
 struct AdHocView: View {
+    @Environment(\.popupCoordinateSpace) var coordSpaceName
     @Environment(\.adHocPopup) var adHoc
+    
+    
+    @State private var lastTouch = CGPoint.zero
+    @State private var isDragging = false
     
     let adHodCodeBlock =
 """
@@ -79,10 +84,11 @@ var body: some View {
     var body: some View {
         PopupView {
             Text(text())
+                
                 .environment(\.openURL, OpenURLAction { url in
                     switch url.absoluteString {
                     case "popup1":
-                        adHoc(0.85, 0.6, true, .fromPoint, {
+                        adHoc(0.85, 0.6, true, .fromProvided(point: lastTouch), {
                             PopupView {
                                 VStack {
                                     CodeBlock(text: "public typealias AdHocPopup = (CGFloat, CGFloat, Bool, @escaping () -> any View, () -> ()) -> ()")
@@ -94,7 +100,7 @@ var body: some View {
                         }, {})
                         return .handled
                     case "popup2":
-                        adHoc(0.85, 0.95, true, .fromPoint, {
+                        adHoc(0.85, 0.95, true, .fromProvided(point: lastTouch), {
                             PopupView {
                                 CodeBlock(text: openUrlExample)
                                     .minimumScaleFactor(0.5)
@@ -103,14 +109,14 @@ var body: some View {
                         }, {})
                         return .handled
                     case "popup3":
-                        adHoc(0.5, 0.5, true, .fromPoint, {
+                        adHoc(0.5, 0.5, true, .fromProvided(point: lastTouch), {
                             PopupView {
                                 Text("Since ad hoc popups don't have a specific link, there is no view center to animate from. Therefore, setting presentaionMode to either .fromPoint or .fromRect has the .fromPoint behavior.")
                             }
                         }, {})
                         return .handled
                     case "popup4":
-                        adHoc(0.5, 0.5, true, .fromPoint, {
+                        adHoc(0.5, 0.5, true, .fromProvided(point: lastTouch), {
                             PopupView {
                                 VStack {
                                     CodeBlock(text: adHodCodeBlock)
@@ -124,7 +130,21 @@ var body: some View {
                     }
                 })
                 .tint(Color("LinkYellow"))
+                
         }
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 0, coordinateSpace: .named(coordSpaceName))
+                .onChanged { value in
+                    if !isDragging {
+                        let xOffset = value.location.x
+                        let yOffset = value.location.y
+                        lastTouch = CGPoint(x: xOffset, y: yOffset)
+                    }
+                }
+                .onEnded { _ in
+                    isDragging = false
+                }
+        )
     }
 }
 
