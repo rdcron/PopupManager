@@ -78,6 +78,9 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
                 case .fromCenter:
                     xOffset = pmSize.width / 2
                     yOffset = pmSize.height / 2
+                case .fromProvided(let point):
+                    xOffset = point.x
+                    yOffset = point.y
                 }
                 
                 stack.push(.init(popup: AnyView(popup()), widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses: touchOutsideDismisses, source: CGPoint(x: xOffset, y: yOffset), onDismiss: onDismiss))
