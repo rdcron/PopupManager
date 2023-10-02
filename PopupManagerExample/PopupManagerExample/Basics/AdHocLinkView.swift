@@ -15,6 +15,18 @@ struct AdHocView: View {
     @State private var currentTouch = CGPoint.zero
     @State private var isDragging = false
     
+    let infoText: LocalizedStringKey = "_Code for these links can be found in:_\n**/Basics/AdHocLinkView.swift**"
+    
+    let adHocClosureTypeText =
+"""
+public typealias AdHocPopup = (_ widthMultiplier:CGFloat,
+                               _ heightMultiplier:CGFloat,
+                               _ touchesOutsideDismiss:Bool,
+                               _ presentationMode:PopupPresentationMode,
+                               _ popup:@escaping () -> any View,
+                               _ onDismiss:@escaping ()-> ())-> ()
+"""
+    
     let adHodCodeBlock =
 """
 @Environment(\\.adHocPopup) var adHoc
@@ -48,6 +60,8 @@ Ad hoc popup can be created by using the [adHocPopup](popup1) Environment Value.
     var openUrlExample: String =
 """
 @Environment(\\.adHocPopup) var adHoc
+@State private var currentTouch = CGPoint.zero //<==used with adHocTouchTracker
+                                    // to get point for presentation
 var inlineLinks = {
     if let txt = try? AttributedString(markdown:
 \"\"\"
@@ -64,12 +78,12 @@ var body: some View {
         .environment(\\.openURL, OpenURLAction { url in
             switch url.absolutString {
             case "link1":
-                adHoc(0.75, 0.75, true, .fromRect, {
+                adHoc(0.75, 0.75, true, .fromProvided(point: currentTouch), {
                 Text("One tapped")
             }, {})
                 return .handled
             case "link2":
-                adHoc(0.75, 0.75, true, .fromRect, {
+                adHoc(0.75, 0.75, true, .fromProvided(point: currentTouch), {
                 Text("Two tapped")
             }, {})
                 return .handled
@@ -77,11 +91,13 @@ var body: some View {
                 return .discarded // or .systemAction to forward an unhandled url
             }
         }
+        .adHocTouchTracker(touchLocation: $currentTouch) //<== tracks the latest touch within
+                                            // the root PopupManager
 }
 """
     
     var body: some View {
-        PopupView {
+        PopupView(infoText: infoText) {
             Text(text())
                 
                 .environment(\.openURL, OpenURLAction { url in
@@ -90,10 +106,10 @@ var body: some View {
                         adHoc(0.85, 0.6, true, .fromProvided(point: currentTouch), {
                             PopupView {
                                 VStack {
-                                    CodeBlock(text: "public typealias AdHocPopup = (CGFloat, CGFloat, Bool, @escaping () -> any View, () -> ()) -> ()")
+                                    CodeBlock(text: adHocClosureTypeText)
                                         .minimumScaleFactor(0.4)
                                  
-                                    Text("The parameters corespond to 'widthMultiplier, heightMultiplier, touchOutsideDismisses, the popup closure itself, and th onDismiss callback closure. No 'PopupLink' is involved, there is no parameter to define one.")
+                                    Text("This closely matches the init() for a PopupLink, however since there isn't a link there is no closure for a label. If an animation from a specific point is desired(such as a link in an AttributedString), the adHocTouchTracker view modifier can be applied to a view. This modifier takes a Binding<CGPoint> which is set to the most recent touch within the modified view, and that point can be passed as the presentationMode parameter via the .fromProvided(point:) case.")
                                 }
                             }
                         }, {})
@@ -110,7 +126,7 @@ var body: some View {
                     case "popup3":
                         adHoc(0.5, 0.5, true, .fromProvided(point: currentTouch), {
                             PopupView {
-                                Text("Since ad hoc popups don't have a specific link, there is no view center to animate from. Therefore, setting presentaionMode to either .fromPoint or .fromRect has the .fromPoint behavior.")
+                                Text("Since ad hoc popups don't have a specific link, there is no view center to animate from. Therefore, setting presentaionMode to either .fromPoint or .fromRect has the effect of presenting from the root PopupManager's origin. An animation source point can be specified with the .fromProvided(point:) PopupPresentationMode case, and a touch point can be found by applying the adHocTouchTracker modifier to the view. The other presentation modes work as expected.")
                             }
                         }, {})
                         return .handled

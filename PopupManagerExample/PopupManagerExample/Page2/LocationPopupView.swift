@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LocationPopupView: View {
-    @Environment(\.popupTouchLocation) var touchLocation
+    let touchLocation: CGPoint
     
     @State private var x = CGFloat.zero
     @State private var y = CGFloat.zero
@@ -27,8 +27,3 @@ struct LocationPopupView: View {
     }
 }
 
-struct LocationPopupView_Previews: PreviewProvider {
-    static var previews: some View {
-        LocationPopupView()
-    }
-}

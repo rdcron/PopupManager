@@ -42,8 +42,4 @@ struct DismissView: View {
     }
 }
 
-struct DismissView_Previews: PreviewProvider {
-    static var previews: some View {
-        DismissView()
-    }
-}
+

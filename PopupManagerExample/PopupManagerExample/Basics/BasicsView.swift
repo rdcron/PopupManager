@@ -59,6 +59,18 @@ struct BasicsView: View {
                                 PresentationModeView()
                             }
                         
+                        Text("On dismiss callback")
+                            .linkFormat()
+                            .popupLink(widthMultiplier: 0.4, heightMultiplier: 0.4) {
+                                OnDismissView()
+                            } onDismiss: {
+                                adHoc(0.3, 0.3, true, .fromTop, {
+                                    PopupView {
+                                        Text(".onDismiss callbacks can initiate ad hoc popups(like this one).")
+                                    }
+                                }, {})
+                            }
+                        
                     }
                     .padding(.leading, 40)
                     
@@ -70,8 +82,3 @@ struct BasicsView: View {
     }
 }
 
-struct BasicsView_Previews: PreviewProvider {
-    static var previews: some View {
-        BasicsView()
-    }
-}

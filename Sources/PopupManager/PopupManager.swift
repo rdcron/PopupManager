@@ -67,7 +67,12 @@ public extension EnvironmentValues {
 ///   - presentaionMode: PresentationMode enum value setting how popups are presented
 ///   - popup: closure defining the popup view
 ///   - onDismiss: callback closure
-public typealias AdHocPopup = (_ widthMultiplier:CGFloat,_ heightMultiplier:CGFloat,_ touchesOutsideDismiss:Bool,_ presentationMode:PopupPresentationMode,_ popup:@escaping () -> any View,_ onDismiss:@escaping () -> ()) -> ()
+public typealias AdHocPopup = (_ widthMultiplier:CGFloat,
+                               _ heightMultiplier:CGFloat,
+                               _ touchesOutsideDismiss:Bool,
+                               _ presentationMode:PopupPresentationMode,
+                               _ popup:@escaping () -> any View,
+                               _ onDismiss:@escaping ()-> ())-> ()
 
 
 public struct AdHocPopupKey: EnvironmentKey {

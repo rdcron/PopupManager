@@ -38,6 +38,7 @@
 		8DA3CE072ABFBAE900B55CE2 /* ParamDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA3CE062ABFBAE900B55CE2 /* ParamDetailsView.swift */; };
 		8DD784472ABE91D6000BF3EF /* InfoPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD784462ABE91D6000BF3EF /* InfoPopupView.swift */; };
 		8DD784492ABE98D2000BF3EF /* ViewModifierPLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD784482ABE98D2000BF3EF /* ViewModifierPLView.swift */; };
+		8DF197B62ACA516C003A4338 /* OnDismissView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF197B52ACA516C003A4338 /* OnDismissView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		8DA3CE062ABFBAE900B55CE2 /* ParamDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParamDetailsView.swift; sourceTree = "<group>"; };
 		8DD784462ABE91D6000BF3EF /* InfoPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopupView.swift; sourceTree = "<group>"; };
 		8DD784482ABE98D2000BF3EF /* ViewModifierPLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifierPLView.swift; sourceTree = "<group>"; };
+		8DF197B52ACA516C003A4338 /* OnDismissView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDismissView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 				8D3E39902ABFE4C2002D0EC3 /* AdHocLinkView.swift */,
 				8D22E7FE2ABA3C7900CBB541 /* PMPopup.swift */,
 				8D8395DB2AC4C37500C3C89C /* PresentationModeView.swift */,
+				8DF197B52ACA516C003A4338 /* OnDismissView.swift */,
 			);
 			path = Basics;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				8D0666E92AB7D5690057F16D /* PopupManagerExampleApp.swift in Sources */,
 				8D8330882AB947CA00807527 /* LinkFormat.swift in Sources */,
 				8D83307F2AB938AF00807527 /* IntroView.swift in Sources */,
+				8DF197B62ACA516C003A4338 /* OnDismissView.swift in Sources */,
 				8D6470D82ABD3237002688C4 /* TextShortcutPLView.swift in Sources */,
 				8DD784492ABE98D2000BF3EF /* ViewModifierPLView.swift in Sources */,
 				8D8330822AB93E2E00807527 /* IntroPopup.swift in Sources */,
