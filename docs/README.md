@@ -123,6 +123,10 @@ var body: some View {
 
 This view modifier doesn't have to be used with an ad hoc popup. All it does is keep the `Binding<CGPoint>` value set to the most recent touch within the modified view realative to the root `PopupManager`.
 
+>##### **Caution**
+
+>Some built-in SwiftUI controls(Slider, .segmented and .wheel Picker styles, probably more) don't work with adHocTouchTracker. If one of these views hase the adHocTouchTracker modifier attached, or if they are children of a view with that modifier, they won't respond to touch events. If touch tracking is needed within a parent view that includes such a control, attach the modifier directly to the views that need their touch location tracked, or to a container(HStack, VStack, etc.) that doesn't contain those controls.
+
 ### **Dismissing popups**
 
 ---
