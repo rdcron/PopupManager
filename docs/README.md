@@ -102,6 +102,27 @@ public typealias AdHocPopup = (_ widthMultiplier:CGFloat,
                                 _ onDismiss:@escaping () -> ()) -> ()
 ```
 
+Because there is no linked label associated with an ad hoc popup, the .fromRect and .fromPoint presentation modes give a presentation animation from the root `PopupManager`s origin. To animate from a specific point, the .fromProvided(point:) case can be used(PopupPresentationMode is covered in detail below). The touch point can be accessed by using the adHocTouchTracker view modifier(also covered below).
+
+#### **adHocTouchTracker**
+
+The adHocTouchTracker takes a `Binding<CGPoint>` argument which is set to the most recent touch location realative to the root `PopupManager`s named coordinate space. This can be used with the .fromProvided(point:) PopupPresentationMode case to animate the popup from the touch location when an ad hoc popup is used.
+
+```Swift
+@State private var currentTouch = CGPoint.zero
+
+var body: some View {
+	Button("Ad hoc popup example") {
+		adHoc(0.25, 0.25, true, .fromProvided(point: currentTouch), {
+			Text("Animating from: x: \(currentTouch.x), y: \(currentTouch.y)
+		}, {})
+	}
+	.adHocTouchTracker(touchLocation: $currentTouch)	
+}
+```
+
+This view modifier doesn't have to be used with an ad hoc popup. All it does is keep the `Binding<CGPoint>` value set to the most recent touch within the modified view realative to the root `PopupManager`.
+
 ### **Dismissing popups**
 
 ---
@@ -145,19 +166,16 @@ Simillarly, all active popups can be dismissed at once using the `@Environment(\
 
 The `PopupPresentationMode` enum declares several modes for presenting popup views. The cases are:
 
-* .fromRect: Popup presented from the center of the label(if applicable)
-* .fromPoint: Popup presented from the tap location
-* .fromBottom: Popup presented from the bottom of the `PopupManager` enclosed area.
-* .fromTop: Popup presented from the top of the `PopupManager` enclosed area.
-* .fromLeading: Popup presented from the leading edge of the `PopupManager` enclosed area.
-* .fromTrailing: Popup presented from the trailing edge of the `PopupManager` enclosed area.
-* .fromCenter: Popup presented from the center of the `PopupManager` enclosed area.
+* `.fromRect`: Popup presented from the center of the label(if applicable)
+* `.fromPoint`: Popup presented from the tap location(not compatible with ad hoc popups)
+* `.fromBottom`: Popup presented from the bottom of the `PopupManager` enclosed area.
+* `.fromTop`: Popup presented from the top of the `PopupManager` enclosed area.
+* `.fromLeading`: Popup presented from the leading edge of the `PopupManager` enclosed area.
+* `.fromTrailing`: Popup presented from the trailing edge of the `PopupManager` enclosed area.
+* `.fromCenter`: Popup presented from the center of the `PopupManager` enclosed area.
+* `.fromProvided(point:CGPoint)`: Popup presented from a specified point. Can be used in conjuction with the `adHocTouchTracker` view modifier to present an ad hoc popup from a touch location.
 
-It's important to note that all of these presentation are realative to the `PopupManger` enclosed view. If the `PopupManager` takes up less that the entire screen, the presentations occur within and realative to that area.
-
-## **PMSlider**
-
-SwiftUI's built-in `Slider` does not work with this package, and after some research online this seems to be a bug in `Slider` itself. `PopupManager` intercepts all touches to track the most recent tap(partly to help in presenting ad hoc popups) before passing the touches on to the enclosed views. This seems to work fine for everything except `Slider`s(though more issues could still be discovered). Whether the problem is with `Slider` or with the package, a custom slider view `PMSlider` is included with the package. `PMSlider` was written to be as similar as possible to `Slider`, and in most cases existing slider code should work as-is by importing `PopupManager` and inserting 'PM' in front of any `Slider` declarations.
+It's important to note that all of these presentations are realative to the `PopupManger` enclosed view. If the `PopupManager` takes up less that the entire screen, the presentations occur within and realative to that area.
 
 ## **Example Project**
 
