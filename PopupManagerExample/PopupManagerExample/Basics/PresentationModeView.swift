@@ -31,7 +31,7 @@ struct PresentationModeView: View {
                     Text("  .fromRect")
                         .popupLink(widthMultiplier: poWidth, heightMultiplier: poHeight, presentationMode: .fromRect) {
                             PopupView {
-                                Text("From the center of label view")
+                                Text("From the center of the label view")
                             }
                         }
                     Text("  .fromBottom")

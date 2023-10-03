@@ -26,7 +26,7 @@ struct DataPassingView: View {
                     Spacer()
                 }
                 
-                Text("Since popup views are normal views, the same strategies used for passing data in other SwiftUI views can be applied here. For example, the folling link opens a popup that adjusts the color this cell's border.")
+                Text("Since popup views are normal views, the same strategies used for passing data in other SwiftUI views can be applied here. For example, the following link opens a popup that adjusts the color this cell's border.")
                 
                 Text("Adjust Color")
                     .linkFormat()

@@ -176,7 +176,7 @@ public struct PopupManager<Content: View>: View {
                     content()
                         .environmentObject(stack)
                         .environment(\.adHocPopup, adHoc)
-                        .environment(\.pmSize, geo.size)
+//                        .environment(\.pmSize, geo.size)
                         .environment(\.popupCoordinateSpace, stack.coordinateNamespace)
                         .frame(width: geo.size.width, height: geo.size.height)
                 

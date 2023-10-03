@@ -58,9 +58,8 @@ Text highlighting is provided by [John Sundell's Splash](https://github.com/John
                             }
                         }
                 }
-                .frame(width: blockSize.width)
             }
-            .frame(height: blockSize.height)
+            .frame(width: blockSize.width, height: blockSize.height)
         }
 
         

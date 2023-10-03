@@ -39,12 +39,6 @@ struct BasicsView: View {
                         } label: {
                             Text("PopupLink()")
                                 .linkFormat()
-                        } onDismiss: {
-                            adHoc(0.4, 0.4, true, .fromTop, {
-                                PopupView {
-                                    Text("An 'onDismiss' callback can be set for all types of popups. These can do things like call an ad hoc popup (such as this one) or any other action needed when the popup is dismissed.")
-                                }
-                            }, {})
                         }
                         
                         Text("Ad Hoc Popups")
@@ -66,7 +60,7 @@ struct BasicsView: View {
                             } onDismiss: {
                                 adHoc(0.3, 0.3, true, .fromTop, {
                                     PopupView {
-                                        Text(".onDismiss callbacks can initiate ad hoc popups(like this one).")
+                                        Text("Among other things, .onDismiss callbacks can initiate ad hoc popups(like this one).")
                                     }
                                 }, {})
                             }
