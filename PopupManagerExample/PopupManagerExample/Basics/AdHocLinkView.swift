@@ -41,7 +41,7 @@ adHoc(0.6, 0.6, true, .fromTop, {
     var text = {
         if var txt = try? AttributedString(markdown:
 """
-Ad hoc popup can be created by using the [adHocPopup](popup1) Environment Value. Because Swift currently doesn't allow argument labels or default values for parameters in closures ([SE-0111](https://github.com/apple/swift-evolution/blob/main/proposals/0111-remove-arg-label-type-significance.md)), the [code](popup4) for ad hoc popups is not very pretty. It does, however, allow a popup to be activated by a function call or system event. One use is to create [in-line links](popup2) using AttributedString and accessing the openURL environment value to intercept the link and open a [popup](popup3).
+Ad hoc popup can be created by using the [adHocPopup](popup1) Environment Value. Because Swift currently doesn't allow argument labels([SE-0111](https://github.com/apple/swift-evolution/blob/main/proposals/0111-remove-arg-label-type-significance.md)) or default values for parameters in closures , the [code](popup4) for ad hoc popups is not very pretty. It does, however, allow a popup to be activated by a function call or system event. One use is to create [in-line links](popup2) using AttributedString and accessing the openURL environment value to intercept the link and open a [popup](popup3).
 """) {
             var linkRange = txt.range(of: "adHocPopup")
             txt[linkRange!].underlineStyle = Text.LineStyle.single
