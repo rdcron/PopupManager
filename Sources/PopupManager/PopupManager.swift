@@ -171,87 +171,72 @@ public struct PopupManager<Content: View>: View {
     
     
     public var body: some View {
-        GeometryReader { geo in
-            ZStack {
-                    content()
-                        .environmentObject(stack)
-                        .environment(\.adHocPopup, adHoc)
-//                        .environment(\.pmSize, geo.size)
-                        .environment(\.popupCoordinateSpace, stack.coordinateNamespace)
-                        .frame(width: geo.size.width, height: geo.size.height)
-                
-                if !stack.items.isEmpty {
-                    Color(white: 0, opacity: 0.5)
-                        .onTapGesture(count: 1) {
-                            if let item = stack.items.first {
-                                if item.touchOutsideDismisses {
-                                    stack.pop()
-                                }
-                            }
+
+        ZStack {
+            content()
+                .background( GeometryReader { geo in
+                    Color.clear
+                        .onAppear {
+                            localSize = geo.size
                         }
-                }
-                
-                ForEach(stack.items.reversed()) { popup in
-                    ZStack {
-                        popup.popup
-                            .environmentObject(stack)
-                            .environment(\.popupCoordinateSpace, stack.coordinateNamespace)
-                            .environment(\.popupDismiss, { stack.pop() })
-                            .environment(\.clearPopupStack, { stack.clear() })
-                            .environment(\.adHocPopup, adHoc)
-                            .environment(\.pmSize, geo.size)
-                        if stack.items.count > 1 {
-                            if let index = stack.items.firstIndex(of: popup) {
-                                if index > 0 {
-                                    // If there is more than one popup active, this grays-out all but the top popup
-                                    Color(white: 0, opacity: 0.5)
-                                        .transition(.opacity)
-                                        .onTapGesture(count: 1) {
-                                            if stack.items[0].touchOutsideDismisses {
-                                                stack.pop()
-                                            }
-                                        }
-                                }
-                            }
+                        .onChange(of: geo.size) { newValue in
+                            localSize = newValue
                         }
-                            
-                    }
-                    .frame(width: geo.size.width * popup.widthMultiplier, height: geo.size.height * popup.heightMultiplier)
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                }
-                
-//                .transition(.scale(scale: 0.1).combined(with: .offset(CGSize(width: stack.topSource?.x ?? 0, height: stack.topSource?.y ?? 0))))
-                .transition(
-                    .scale(scale: 0.1)
-                    .combined(with: .offset(
-                        midOffset(CGPoint(x: geo.size.width / 2, y: geo.size.height / 2))
-                    ))
-                )
-                .zIndex(1)
-            }
-            .coordinateSpace(name: stack.coordinateNamespace)
+                })
+                .environmentObject(stack)
+                .environment(\.adHocPopup, adHoc)
+                .environment(\.popupCoordinateSpace, stack.coordinateNamespace)
             
-            .onAppear {
-                localSize = geo.size
+            if !stack.items.isEmpty {
+                Color(white: 0, opacity: 0.5)
+                    .onTapGesture(count: 1) {
+                        if let item = stack.items.first {
+                            if item.touchOutsideDismisses {
+                                stack.pop()
+                            }
+                        }
+                    }
             }
-            .onChange(of: geo.size) { newVal in
-                localSize = newVal
+            
+            ForEach(stack.items.reversed()) { popup in
+                ZStack {
+                    popup.popup
+                        .environmentObject(stack)
+                        .environment(\.popupCoordinateSpace, stack.coordinateNamespace)
+                        .environment(\.popupDismiss, { stack.pop() })
+                        .environment(\.clearPopupStack, { stack.clear() })
+                        .environment(\.adHocPopup, adHoc)
+                        .environment(\.pmSize, localSize)
+                    if stack.items.count > 1 {
+                        if let index = stack.items.firstIndex(of: popup) {
+                            if index > 0 {
+                                // If there is more than one popup active, this grays-out all but the top popup
+                                Color(white: 0, opacity: 0.5)
+                                    .transition(.opacity)
+                                    .onTapGesture(count: 1) {
+                                        if stack.items[0].touchOutsideDismisses {
+                                            stack.pop()
+                                        }
+                                    }
+                            }
+                        }
+                    }
+                        
+                }
+                .frame(width: localSize.width * popup.widthMultiplier, height: localSize.height * popup.heightMultiplier)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
             }
+            
+            .transition(
+                .scale(scale: 0.1)
+                .combined(with: .offset(
+
+                    midOffset(CGPoint(x: localSize.width / 2, y: localSize.height / 2))
+                ))
+            )
+            .zIndex(1)
         }
-//        .simultaneousGesture(TapGesture()
-//            .onEnded {}
-//            .simultaneously(with:
-//                DragGesture(minimumDistance: 0, coordinateSpace: .local)
-//            .onChanged { value in
-//                if localTouchActive {
-//                    localTouchActive = false
-//                    lastTouch = value.location
-//                    print(lastTouch)
-//                }
-//            }
-//                .onEnded { _ in
-//                    localTouchActive = true
-//                }), including: GestureMask.all)
+        .coordinateSpace(name: stack.coordinateNamespace)
     }
     
     func midOffset(_ midPoint: CGPoint) -> CGSize {
