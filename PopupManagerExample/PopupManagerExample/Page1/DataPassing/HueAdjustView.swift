@@ -57,7 +57,6 @@ struct HueAdjustView: View {
                     }
                     
                     Button("Reset") {
-                        print("Reset")
                         withAnimation(.easeInOut(duration: 0.1)) {
                             hue = 0.522
                             sat = 0.72
