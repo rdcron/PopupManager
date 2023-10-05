@@ -34,14 +34,9 @@ struct DataPassingView: View {
                         HueAdjustView(hue: $borderHue, sat: $borderSat, bright: $borderBright)
                     }
                 
-                Spacer()
+               
                 
-                NavigationLink {
-                    Page2View()
-                } label: {
-                    Text("Next Page")
-                        .linkFormat()
-                }
+               
             }
         }
         .overlay(RoundedRectangle(cornerRadius: 21).stroke(Color(hue: borderHue, saturation: borderSat, brightness: borderBright), lineWidth: 10))
