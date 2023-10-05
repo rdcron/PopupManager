@@ -47,8 +47,13 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
         label()
             .background(GeometryReader { geo in
                 Color(.clear)
-                    .preference(key: PMSizePreferenceKey.self, value: geo.frame(in: .named(stack.coordinateNamespace)))
                     .preference(key: LocalSizePreferenceKey.self, value: geo.frame(in: .local))
+                    .onAppear {
+                        rect = geo.frame(in: .named(stack.coordinateNamespace))
+                    }
+                    .onChange(of: geo.frame(in: .named(stack.coordinateNamespace))) { newValue in
+                        rect = newValue
+                    }
             })
             .onTapGesture(count: 1, coordinateSpace: .named(stack.coordinateNamespace)) { location in
                 var xOffset = CGFloat.zero
@@ -85,9 +90,11 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
                 
                 stack.push(.init(popup: AnyView(popup()), widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses: touchOutsideDismisses, source: CGPoint(x: xOffset, y: yOffset), onDismiss: onDismiss))
             }
-            .onPreferenceChange(PMSizePreferenceKey.self) { newVal in
-                rect = newVal
-            }
+            
+        
+//            .onPreferenceChange(PMSizePreferenceKey.self) { newVal in
+//                rect = newVal
+//            }
             .onPreferenceChange(LocalSizePreferenceKey.self) { newVal in
                 midX = newVal.midX
                 midY = newVal.midY
@@ -95,14 +102,14 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
     }
 }
 
-struct PMSizePreferenceKey: PreferenceKey {
-    typealias Value = CGRect
-    static var defaultValue: Value = .zero
-    
-    static func reduce(value: inout Value, nextValue: () -> Value) {
-        value = nextValue()
-    }
-}
+//struct PMSizePreferenceKey: PreferenceKey {
+//    typealias Value = CGRect
+//    static var defaultValue: Value = .zero
+//
+//    static func reduce(value: inout Value, nextValue: () -> Value) {
+//        value = nextValue()
+//    }
+//}
 
 struct LocalSizePreferenceKey: PreferenceKey {
     typealias Value = CGRect
