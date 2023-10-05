@@ -20,7 +20,7 @@ struct PresentationModeView: View {
                 Text("The 'presentationMode' parameter used in all methods of creating a popup view determines how the popup appears and is dismissed. The cases for the PresentationMode enum are:")
                 Group {
                     Text("  .fromPoint")
-                        .padding(30)
+                        .padding(50)
                         .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .popupLink(widthMultiplier: poWidth, heightMultiplier: poHeight, presentationMode: .fromPoint) {
