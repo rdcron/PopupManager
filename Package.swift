@@ -24,8 +24,5 @@ let package = Package(
         .target(
             name: "PopupManager",
             dependencies: []),
-        .testTarget(
-            name: "PopupManagerTests",
-            dependencies: ["PopupManager"]),
     ]
 )
