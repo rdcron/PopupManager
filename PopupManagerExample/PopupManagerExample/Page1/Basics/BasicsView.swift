@@ -49,7 +49,7 @@ struct BasicsView: View {
                         
                         Text("Presentation modes")
                             .linkFormat()
-                            .popupLink {
+                            .popupLink(widthMultiplier: 0.8, heightMultiplier: 0.8) {
                                 PresentationModeView()
                             }
                         
@@ -58,7 +58,7 @@ struct BasicsView: View {
                             .popupLink(widthMultiplier: 0.4, heightMultiplier: 0.4) {
                                 OnDismissView()
                             } onDismiss: {
-                                adHoc(0.3, 0.3, true, .fromTop, {
+                                adHoc(0.3, 0.3, true, .fromTop(), {
                                     PopupView {
                                         Text("Among other things, .onDismiss callbacks can initiate ad hoc popups(like this one).")
                                     }

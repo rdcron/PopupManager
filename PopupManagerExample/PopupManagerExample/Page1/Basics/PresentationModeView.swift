@@ -17,49 +17,49 @@ struct PresentationModeView: View {
     var body: some View {
         PopupView {
             VStack(alignment: .leading) {
-                Text("The 'presentationMode' parameter used in all methods of creating a popup view determines how the popup appears and is dismissed. The cases for the PresentationMode enum are:")
+                Text("The 'presentationMode' parameter used in all methods of creating a popup view determines how the popup appears and is dismissed. PopupPresentationMode cases all have a Boolean associated value 'expand' which determines if the popup animates it's scale or appears at it's full size. The default value for 'expand' is true. The enum cases are:")
                 Group {
-                    Text("  .fromPoint")
+                    Text("  .fromPoint()")
                         .padding(50)
                         .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .popupLink(widthMultiplier: poWidth, heightMultiplier: poHeight, presentationMode: .fromPoint) {
+                        .popupLink(widthMultiplier: poWidth, heightMultiplier: poHeight, presentationMode: .fromPoint()) {
                             PopupView {
                                 Text("From touch point")
                             }
                         }
-                    Text("  .fromRect")
-                        .popupLink(widthMultiplier: poWidth, heightMultiplier: poHeight, presentationMode: .fromRect) {
+                    Text("  .fromRect()")
+                        .popupLink(widthMultiplier: poWidth, heightMultiplier: poHeight, presentationMode: .fromRect()) {
                             PopupView {
                                 Text("From the center of the label view")
                             }
                         }
-                    Text("  .fromBottom")
-                        .popupLink(widthMultiplier: poWidth, heightMultiplier: poHeight, presentationMode: .fromBottom) {
+                    Text("  .fromBottom()")
+                        .popupLink(widthMultiplier: poWidth, heightMultiplier: poHeight, presentationMode: .fromBottom()) {
                             PopupView {
                                 Text("From the bottom of the root PopupManager")
                             }
                         }
-                    Text("  .fromTop")
-                        .popupLink(widthMultiplier: poWidth, heightMultiplier: poHeight, presentationMode: .fromTop) {
+                    Text("  .fromTop(expand: false)")
+                        .popupLink(widthMultiplier: poWidth, heightMultiplier: poHeight, presentationMode: .fromTop(expand: false)) {
                             PopupView {
                                 Text("From the top of the root PopupManager")
                             }
                         }
-                    Text("  .fromLeading")
-                        .popupLink(widthMultiplier: poWidth, heightMultiplier: poHeight, presentationMode: .fromLeading) {
+                    Text("  .fromLeading(expand: false)")
+                        .popupLink(widthMultiplier: poWidth, heightMultiplier: poHeight, presentationMode: .fromLeading(expand: false)) {
                             PopupView {
                                 Text("From the leading edge of the root PopupManager")
                             }
                         }
-                    Text("  .fromTrailing")
-                        .popupLink(widthMultiplier: poWidth, heightMultiplier: poHeight, presentationMode: .fromTrailing) {
+                    Text("  .fromTrailing()")
+                        .popupLink(widthMultiplier: poWidth, heightMultiplier: poHeight, presentationMode: .fromTrailing()) {
                             PopupView {
                                 Text("From the trailing edge of the root PopupManager")
                             }
                         }
-                    Text("  .fromCenter")
-                        .popupLink(widthMultiplier: poWidth, heightMultiplier: poHeight, presentationMode: .fromCenter) {
+                    Text("  .fromCenter()")
+                        .popupLink(widthMultiplier: poWidth, heightMultiplier: poHeight, presentationMode: .fromCenter()) {
                             PopupView {
                                 Text("From the center of the root PopupManager")
                             }
@@ -72,6 +72,7 @@ struct PresentationModeView: View {
                         }
                 }
                 .linkFormat()
+                Text("The .fromProvided() case has an additional associated value 'point' which gives a point to animate from.")
             }
             .adHocTouchTracker(touchLocation: $currentTouch)
         }

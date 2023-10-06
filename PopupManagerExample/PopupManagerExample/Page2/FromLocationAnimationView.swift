@@ -14,7 +14,7 @@ struct FromLocationAnimationView: View {
     let infoText: LocalizedStringKey = "_Code for these links can be found in:_\n**/Page2/FromLocationAnimationView.swift**"
     
     var body: some View {
-        PopupLink(widthMultiplier: 0.3, heightMultiplier: 0.3, presentaionMode: .fromPoint) {
+        PopupLink(widthMultiplier: 0.3, heightMultiplier: 0.3, presentaionMode: .fromPoint()) {
             LocationPopupView(touchLocation: currentTouch)
         } label: {
             CellView(infoText: infoText) {
