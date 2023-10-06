@@ -37,7 +37,7 @@ The `PopupManager` example above used a link with the primary initializer for th
 public init(widthMultiplier: CGFloat = 0.75,
             heightMultiplier: CGFloat = 0.75, 
             touchOutsideDismisses: Bool = true, 
-            presentaionMode: PopupPresentationMode = .fromRect, 
+            presentaionMode: PopupPresentationMode = .fromRect(), 
             popup: @escaping () -> Popup, 
             label: @escaping () -> LabelView, 
             onDismiss: @escaping () -> () = {})
@@ -47,7 +47,7 @@ Most parameters have default values and can be skipped when declaring a `PopupLi
 
 * widthMultiplier: The width of the presented popup realative to the enclosing `PopupManager`(clampped between 0.1 and 1.0).
 * heightMultiplier: The height of the presented popup realative to the enclosing `PopupManager`(clampped between 0.1 and 1.0).
-* touchOutsideDismisses: Boolean that determines if tapping outside the presente popup(in the grayed-out area) dissmisses the popup.
+* touchOutsideDismisses: Boolean that determines if tapping outside the presented popup(in the grayed-out area) dissmisses the popup.
 * presentationMode: An enum value that determines how the popup is presented, details below.
 * popup: A closure defining the popup view to be presented.
 * label: A closure defining the tappable label that will activate the popup.
@@ -85,7 +85,7 @@ Using the `@Environment(\.addHocPopup)` Environment Value, popups can be initiat
 
 ```Swift
 func onMessageRecieve(_ message: String) {
-    adHoc(0.3, 0.3, true, .fromTop, {
+    adHoc(0.3, 0.3, true, .fromTop(), {
         AlertView(message)
     }, {})
 }
@@ -131,7 +131,7 @@ This view modifier doesn't have to be used with an ad hoc popup. All it does is 
 
 ---
 
-As stated before, tapping outside the popup view will dismiss the popup by default. This behavior can be changed by setting the `touchOutsideDismisses` parameter of PopupLink to false. This of course would require an alternate method of dismissing the popup. For this, PopupManager injects the `popupDismiss` EnvironmentValue which can be accessed via the `@Environment(\.popupDismiss)` environment value.
+As stated before, tapping outside the popup view will dismiss the popup by default. This behavior can be changed by setting the `touchOutsideDismisses` parameter of PopupLink to false. This of course would require an alternate method of dismissing the popup. For this, the root `PopupManager` injects the `popupDismiss` EnvironmentValue which can be accessed via the `@Environment(\.popupDismiss)` environment value.
 
 ```Swift
 struct DismissablePopup: View {
