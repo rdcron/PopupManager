@@ -10,8 +10,14 @@ import SwiftUI
 #if os(iOS)
 
 public enum PopupPresentationMode {
-    case fromRect, fromPoint, fromBottom, fromTop, fromLeading, fromTrailing, fromCenter
-    case fromProvided(point: CGPoint)
+    case fromRect(expand: Bool = true)
+    case fromPoint(expand: Bool = true)
+    case fromBottom(expand: Bool = true)
+    case fromTop(expand: Bool = true)
+    case fromLeading(expand: Bool = true)
+    case fromTrailing(expand: Bool = true)
+    case fromCenter(expand: Bool = true)
+    case fromProvided(point: CGPoint, expand: Bool = true)
 }
 
 // Popup Coordinate space environment key
@@ -145,28 +151,36 @@ public struct PopupManager<Content: View>: View {
     ///   - presentaionMode: PresentationMode enum value setting how popups are presented
     ///   - popup: closure defining the popup view
     ///   - onDismiss: callback closure
-    func adHoc(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentaionMode: PopupPresentationMode = .fromPoint, popup: @escaping () -> any View, onDismiss: @escaping () -> () = {}) {
+    func adHoc(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentaionMode: PopupPresentationMode = .fromPoint(), popup: @escaping () -> any View, onDismiss: @escaping () -> () = {}) {
         var animationPoint = CGPoint.zero
+        var shouldExpand: Bool
         
         switch presentaionMode {
             
-        case .fromRect, .fromPoint:
+        case .fromRect(let expand), .fromPoint(let expand):
             animationPoint = currentTouch
-        case .fromBottom:
+            shouldExpand = expand
+        case .fromBottom(let expand):
             animationPoint = CGPoint(x: localSize.width / 2, y: localSize.height)
-        case .fromTop:
+            shouldExpand = expand
+        case .fromTop(let expand):
             animationPoint = CGPoint(x: localSize.width / 2, y: 0)
-        case .fromLeading:
+            shouldExpand = expand
+        case .fromLeading(let expand):
             animationPoint = CGPoint(x: 0, y: localSize.height / 2)
-        case .fromTrailing:
+            shouldExpand = expand
+        case .fromTrailing(let expand):
             animationPoint = CGPoint(x: localSize.width, y: localSize.height / 2)
-        case .fromCenter:
+            shouldExpand = expand
+        case .fromCenter(let expand):
             animationPoint = CGPoint(x: localSize.width / 2, y: localSize.height / 2)
-        case .fromProvided(let point):
+            shouldExpand = expand
+        case .fromProvided(let point, let expand):
             animationPoint = point
+            shouldExpand = expand
         }
         
-        stack.push(.init(popup: AnyView(popup()), widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses: touchOutsideDismisses, source: animationPoint, onDismiss: onDismiss))
+        stack.push(.init(popup: AnyView(popup()), widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses: touchOutsideDismisses, source: animationPoint, expand: shouldExpand, onDismiss: onDismiss))
     }
     
     
@@ -228,7 +242,7 @@ public struct PopupManager<Content: View>: View {
             }
             
             .transition(
-                .scale(scale: 0.1)
+                .scale(scale: stack.peek()?.expand ?? true ? 0.1 : 1.0)
                 .combined(with: .offset(
 
                     midOffset(CGPoint(x: localSize.width / 2, y: localSize.height / 2))

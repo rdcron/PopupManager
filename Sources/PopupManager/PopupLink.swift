@@ -33,7 +33,7 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
     @State private var globalTop = CGPoint.zero
     @State private var globalBottom = CGPoint.zero
     
-    public init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentaionMode: PopupPresentationMode = .fromRect, popup: @escaping () -> Popup, label: @escaping () -> LabelView, onDismiss: @escaping () -> () = {}) {
+    public init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentaionMode: PopupPresentationMode = .fromRect(), popup: @escaping () -> Popup, label: @escaping () -> LabelView, onDismiss: @escaping () -> () = {}) {
         self.widthMultiplier = widthMultiplier.clamped(to: 0.1...1.0)
         self.heightMultiplier = heightMultiplier.clamped(to: 0.1...1.0)
         self.touchOutsideDismisses = touchOutsideDismisses
@@ -58,37 +58,46 @@ public struct PopupLink<LabelView: View, Popup: View>: View {
             .onTapGesture(count: 1, coordinateSpace: .named(stack.coordinateNamespace)) { location in
                 var xOffset = CGFloat.zero
                 var yOffset = CGFloat.zero
+                var shouldExpand: Bool
                 
                 switch presentaionMode {
-                case .fromRect:
+                case .fromRect(let expand):
                     // Popup animates from the center of the label
                     xOffset = rect.origin.x + midX
                     yOffset = rect.origin.y + midY
-                case .fromPoint:
+                    shouldExpand = expand
+                case .fromPoint(let expand):
                     // Popup animates from the touch location within the label
                     xOffset = location.x
                     yOffset = location.y
-                case .fromBottom:
+                    shouldExpand = expand
+                case .fromBottom(let expand):
                     xOffset = pmSize.width / 2
                     yOffset = pmSize.height
-                case .fromTop:
+                    shouldExpand = expand
+                case .fromTop(let expand):
                     xOffset = pmSize.width / 2
                     yOffset = 0
-                case .fromLeading:
+                    shouldExpand = expand
+                case .fromLeading(let expand):
                     xOffset = 0
                     yOffset = pmSize.height / 2
-                case .fromTrailing:
+                    shouldExpand = expand
+                case .fromTrailing(let expand):
                     xOffset = pmSize.width
                     yOffset = pmSize.height / 2
-                case .fromCenter:
+                    shouldExpand = expand
+                case .fromCenter(let expand):
                     xOffset = pmSize.width / 2
                     yOffset = pmSize.height / 2
-                case .fromProvided(let point):
+                    shouldExpand = expand
+                case .fromProvided(let point, let expand):
                     xOffset = point.x
                     yOffset = point.y
+                    shouldExpand = expand
                 }
                 
-                stack.push(.init(popup: AnyView(popup()), widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses: touchOutsideDismisses, source: CGPoint(x: xOffset, y: yOffset), onDismiss: onDismiss))
+                stack.push(.init(popup: AnyView(popup()), widthMultiplier: widthMultiplier, heightMultiplier: heightMultiplier, touchOutsideDismisses: touchOutsideDismisses, source: CGPoint(x: xOffset, y: yOffset), expand: shouldExpand, onDismiss: onDismiss))
             }
             
         
@@ -145,7 +154,7 @@ struct Linked<Popup: View>: ViewModifier {
     var popup: () -> Popup
     var onDismiss: () -> ()
     
-    public init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentationMode: PopupPresentationMode = .fromRect, popup: @escaping () -> Popup, onDismiss: @escaping () -> () = {}) {
+    public init(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentationMode: PopupPresentationMode = .fromRect(), popup: @escaping () -> Popup, onDismiss: @escaping () -> () = {}) {
         self.widthMultiplier = widthMultiplier.clamped(to: 0.1...1.0)
         self.heightMultiplier = heightMultiplier.clamped(to: 0.1...1.0)
         self.touchOutsideDismisses = touchOutsideDismisses
@@ -172,7 +181,7 @@ public extension View {
     ///   - touchOutsideDismisses: Specifies whether tapping outside the popup dismisses it, default is true
     ///   - popup: ViewBuilder closure used to create the popup view
     /// - Returns: PopupLink-wrapped view
-    func popupLink<Popup: View>(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentationMode: PopupPresentationMode = .fromRect, popup: @escaping () -> Popup, onDismiss: @escaping () -> () = {}) -> some View {
+    func popupLink<Popup: View>(widthMultiplier: CGFloat = 0.75, heightMultiplier: CGFloat = 0.75, touchOutsideDismisses: Bool = true, presentationMode: PopupPresentationMode = .fromRect(), popup: @escaping () -> Popup, onDismiss: @escaping () -> () = {}) -> some View {
         modifier(Linked(widthMultiplier: widthMultiplier.clamped(to: 0.1...1.0), heightMultiplier: heightMultiplier.clamped(to: 0.1...1.0), touchOutsideDismisses: touchOutsideDismisses, presentationMode: presentationMode, popup: popup, onDismiss: onDismiss))
     }
 }
