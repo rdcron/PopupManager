@@ -168,16 +168,16 @@ Simillarly, all active popups can be dismissed at once using the `@Environment(\
 
 ### **Presentation Modes**
 
-The `PopupPresentationMode` enum declares several modes for presenting popup views. The cases are:
+The `PopupPresentationMode` enum declares several modes for presenting popup views. All cases have an `expand:Bool` associated value which determines whether the popup's scale animates at presentation or appears at full size. The default value of `expand` is `true`. The `.fromProvided` case has an additional `point:CGPoint` associated value, described below. The cases are:
 
-* `.fromRect`: Popup presented from the center of the label(if applicable)
-* `.fromPoint`: Popup presented from the tap location(not compatible with ad hoc popups)
-* `.fromBottom`: Popup presented from the bottom of the `PopupManager` enclosed area.
-* `.fromTop`: Popup presented from the top of the `PopupManager` enclosed area.
-* `.fromLeading`: Popup presented from the leading edge of the `PopupManager` enclosed area.
-* `.fromTrailing`: Popup presented from the trailing edge of the `PopupManager` enclosed area.
-* `.fromCenter`: Popup presented from the center of the `PopupManager` enclosed area.
-* `.fromProvided(point:CGPoint)`: Popup presented from a specified point. Can be used in conjuction with the `adHocTouchTracker` view modifier to present an ad hoc popup from a touch location.
+* `.fromRect(expand:Bool))`: Popup presented from the center of the label(if applicable)
+* `.fromPoint(expand:Bool))`: Popup presented from the tap location(not compatible with ad hoc popups)
+* `.fromBottom(expand:Bool))`: Popup presented from the bottom of the `PopupManager` enclosed area.
+* `.fromTop(expand:Bool))`: Popup presented from the top of the `PopupManager` enclosed area.
+* `.fromLeading(expand:Bool))`: Popup presented from the leading edge of the `PopupManager` enclosed area.
+* `.fromTrailing(expand:Bool))`: Popup presented from the trailing edge of the `PopupManager` enclosed area.
+* `.fromCenter(expand:Bool))`: Popup presented from the center of the `PopupManager` enclosed area.
+* `.fromProvided(point:CGPoint,expand:Bool)`: Popup presented from a specified point. Can be used in conjuction with the `adHocTouchTracker` view modifier to present an ad hoc popup from a touch location.
 
 It's important to note that all of these presentations are realative to the `PopupManger` enclosed view. If the `PopupManager` takes up less that the entire screen, the presentations occur within and realative to that area.
 
