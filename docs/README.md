@@ -2,6 +2,10 @@
 
 ## **Overview**
 
+
+https://github.com/rdcron/PopupManager/assets/29345317/23f4db97-0f34-4048-9ae6-0df64fa9c07b
+
+
 PopupManager is a Swift package that adds a new type of modal view to SwiftUI iOS projects. Popup views are defined by the user of the package, and can be presented in a number of ways. When dismissed, the reverse animation is performed. The `PopupManager` API is loosely based on the `NavigationStack` and `NavigationLink` APIs. The `PopupManager` struct manages a stack of active popups and handles the animation for presentation and dismissal of popup views. Each `PopupManager` maintains it's own named coordinate space, so multiple `PopupManager`s can be used, either on the same screen or on separate screens in the app. They cannot, however, be nested.
 
 ## **Usage**
